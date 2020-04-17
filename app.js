@@ -24,6 +24,8 @@ const userController = require("./controllers/userController");
 
 const LocalStrategy = require("passport-local").Strategy;
 
+const MONGODB_URL = "mongodb://127.0.0.1/test";
+
 /* VIEW ENGINE */
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
@@ -41,8 +43,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static("public"));
 
 /* MONGOOSE */
-const dbUri = "mongodb://127.0.0.1/test";
-mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(MONGODB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
