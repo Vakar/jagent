@@ -1,0 +1,28 @@
+extends layout
+
+block content
+
+  .container
+  .row
+    .col-sm-9.col-md-7.col-lg-5.mx-auto
+      .card.card-signin.my-5
+        .card-body
+          h5.card-title.text-center Sign In
+          form.form-signin(method='POST' action='/login')
+            .form-label-group
+              label(for='inputUsername') Username
+              input#inputUsername.form-control(type='text' name="username" placeholder='Please input username' required='true' autofocus='')
+            br
+            .form-label-group
+              label(for='inputPassword') Password
+              input#inputPassword.form-control(type='password' name="password" placeholder='Please input password' required='true')
+            br
+            button.btn.btn-lg.btn-primary.btn-block.text-uppercase(type='submit') Sign in
+            br
+            a.float-right(href='/registration') Registration
+            hr.my-4
+            p.text-danger.text-center #{message}
+            if errors       
+                ul
+                    each val, index in errors
+                        li.text-danger= val.msg
