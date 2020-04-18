@@ -20,7 +20,7 @@ const secureRouter = require("./routes/secure");
 
 const Users = require("./models/user");
 
-const userController = require("./controllers/userController");
+const loginController = require("./controllers/loginController");
 
 const LocalStrategy = require("passport-local").Strategy;
 
@@ -99,8 +99,8 @@ app.get("/login", function (req, res) {
 // POST handle login action
 app.post(
   "/login",
-  userController.validateLogin(),
-  userController.filterValidationLoginErrors,
+  loginController.validateLogin(),
+  loginController.filterValidationLoginErrors,
   passport.authenticate("local", {
     successRedirect: "/secure/private",
     failureRedirect: "/login",

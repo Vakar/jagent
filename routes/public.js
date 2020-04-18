@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const userController = require("../controllers/userController");
+const registrationController = require("../controllers/registrationController");
 
 /* GET home page. */
 router.get("/", (req, res) => res.redirect("/login"));
@@ -16,8 +16,8 @@ router.get("/registration", (req, res) =>
 /* POST register user */
 router.post(
   "/register",
-  userController.validateRegistration(),
-  userController.createUser
+  registrationController.validateRegistration(),
+  registrationController.saveUser
 );
 
 module.exports = router;
