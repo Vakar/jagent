@@ -90,23 +90,20 @@ exports.validateRegistration = () => {
 exports.createUser = async (req, res, next) => {
   try {
     const errors = await validationResult(req);
+    const { username, password } = req.body;
     if (!errors.isEmpty()) {
       res.render("registration", {
-        username: req.body.username,
+        username: username,
         errors: errors.array(),
       });
     } else {
-      bcrypt.hash(req.body.password, saltRounds).then(function (hash) {
-        const user = new User({
-          username: req.body.username,
-          password: hash,
-        });
-        user.save().then((result) => {
-          if (result) {
-            res.redirect("/");
-          }
-        });
+      const hash = await bcrypt.hash(password, saltRounds);
+      const user = new User({
+        username: username,
+        password: hash,
       });
+      await user.save();
+      res.redirect("/");
     }
   } catch (err) {
     return next(err);
