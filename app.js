@@ -17,6 +17,7 @@ const bcrypt = require("bcrypt");
 
 const publicRouter = require("./routes/public");
 const secureRouter = require("./routes/secure");
+const restApi = require("./routes/restApi");
 
 const Users = require("./models/user");
 
@@ -102,7 +103,7 @@ app.post(
   loginController.validateLogin(),
   loginController.filterValidationLoginErrors,
   passport.authenticate("local", {
-    successRedirect: "/secure/private",
+    successRedirect: "/secure/companies",
     failureRedirect: "/login",
     failureFlash: true,
   })
@@ -123,6 +124,7 @@ app.use(require("connect-ensure-login").ensureLoggedIn());
 
 /* SECURE ROUTES */
 app.use("/secure", secureRouter);
+app.use("/api/rest", restApi);
 
 /* ERROR HANDLING */
 // Catch 404 and forward to error handler

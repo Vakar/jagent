@@ -1,9 +1,6 @@
-const express = require("express"),
-  router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-/* GET private page */
-router.get("/private", (req, res) => {
-  res.render("private", { user: req.user.username });
-});
+router.get("/companies", (req, res) => res.send("page_mock"));
 
 module.exports = router;
