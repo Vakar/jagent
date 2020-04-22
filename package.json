@@ -7,6 +7,7 @@
   },
   "scripts": {
     "start": "node ./bin/www",
+    "debug-start": "DEBUG=hr:* npm start",
     "lint": "eslint '**/*.js' --ignore-pattern node_modules/"
   },
   "dependencies": {
