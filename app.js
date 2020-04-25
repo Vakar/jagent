@@ -28,7 +28,7 @@ const MONGODB_URL = "mongodb://127.0.0.1/test";
 
 /* VIEW ENGINE */
 app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
+app.set("view engine", "pug");
 
 /* EXPRESS SETUP */
 app.use(flash());
