@@ -16,7 +16,6 @@ const session = require("express-session");
 const bcrypt = require("bcrypt");
 
 const publicRouter = require("./routes/public");
-const secureRouter = require("./routes/secure");
 const restApi = require("./routes/restApi");
 
 const Users = require("./models/user");
@@ -103,7 +102,7 @@ app.post(
   loginController.validateLogin(),
   loginController.filterValidationLoginErrors,
   passport.authenticate("local", {
-    successRedirect: "/secure/companies",
+    successRedirect: "/",
     failureRedirect: "/login",
     failureFlash: true,
   })
@@ -122,8 +121,11 @@ app.use("/", publicRouter);
 // REJECT UNAUTHORIZED USERS and redirect them to /login
 app.use(require("connect-ensure-login").ensureLoggedIn());
 
+/* SECURE STATIC FOLDER FOR REACT APP*/
+app.use(express.static(path.join(__dirname, "client/build")));
+app.use(express.static("build"));
+
 /* SECURE ROUTES */
-app.use("/secure", secureRouter);
 app.use("/api/rest", restApi);
 
 /* ERROR HANDLING */

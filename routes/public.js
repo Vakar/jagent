@@ -4,7 +4,13 @@ const router = express.Router();
 const registrationController = require("../controllers/registrationController");
 
 /* GET home page. */
-router.get("/", (req, res) => res.redirect("/login"));
+router.get("/", (req, res) => {
+  if (req.user) {
+    res.redirect("/index.html");
+  } else {
+    res.redirect("/login");
+  }
+});
 
 /* GET registration page */
 router.get("/registration", (req, res) =>
