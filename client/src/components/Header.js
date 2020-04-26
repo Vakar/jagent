@@ -1,16 +1,16 @@
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
+import AppBar from "@material-ui/core/AppBar";
+import Link from "@material-ui/core/Link";
 import React from "react";
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
   toolbar: {
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
   },
   toolbarTitle: {
     flexGrow: 1,
@@ -38,14 +38,14 @@ function Header() {
         >
           Human Recruiter
         </Typography>
-        <Button
-          href="#"
-          color="primary"
-          variant="outlined"
+        <Link
+          variant="button"
+          color="textPrimary"
+          href="/logout"
           className={classes.link}
         >
           Logout
-        </Button>
+        </Link>
       </Toolbar>
     </AppBar>
   );
