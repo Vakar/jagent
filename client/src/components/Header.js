@@ -1,10 +1,10 @@
 import AppBar from "@material-ui/core/AppBar";
+import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
 import React from "react";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-
 const useStyles = makeStyles((theme) => ({
   appBar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
@@ -38,14 +38,9 @@ function Header() {
         >
           Human Recruiter
         </Typography>
-        <Link
-          variant="button"
-          color="textPrimary"
-          href="/logout"
-          className={classes.link}
-        >
+        <Button href="/logout" variant="outlined" color="default">
           Logout
-        </Link>
+        </Button>
       </Toolbar>
     </AppBar>
   );
