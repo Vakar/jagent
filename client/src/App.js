@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import API from "./util/api";
+import AddCard from "./components/elements/AddCard";
 import CompanyCard from "./components/elements/CompanyCard";
 import Grid from "@material-ui/core/Grid";
 import GridContainer from "./components/elements/GridContainer";
@@ -43,6 +44,9 @@ class App extends Component {
             <CompanyCard deleteCompany={this.deleteCompany} company={company} />
           </Grid>
         ))}
+        <Grid item>
+          <AddCard />
+        </Grid>
       </GridContainer>
     );
   }
