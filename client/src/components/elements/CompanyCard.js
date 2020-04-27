@@ -8,7 +8,6 @@ import EditIcon from "@material-ui/icons/Edit";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -17,7 +16,6 @@ const useStyles = makeStyles({
 
 export default function CompanyCard(props) {
   const classes = useStyles();
-
   return (
     <Card className={classes.root} variant="outlined">
       <CardActionArea>
@@ -29,7 +27,12 @@ export default function CompanyCard(props) {
       </CardActionArea>
       <CardActions>
         <Button startIcon={<EditIcon />}>Edit</Button>
-        <Button startIcon={<DeleteIcon />}>Delete</Button>
+        <Button
+          onClick={() => props.deleteCompany(props.company._id)}
+          startIcon={<DeleteIcon />}
+        >
+          Delete
+        </Button>
       </CardActions>
     </Card>
   );
