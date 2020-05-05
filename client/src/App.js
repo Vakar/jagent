@@ -9,11 +9,9 @@ import GridContainer from "./components/elements/GridContainer";
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = { companies: [] };
     this.deleteCompany = this.deleteCompany.bind(this);
   }
-
-  // Initialize state
-  state = { companies: [] };
 
   getCompanies() {
     fetch("/api/rest/companies")
@@ -21,7 +19,6 @@ class App extends Component {
       .then((companies) => this.setState({ companies }));
   }
 
-  // Fetch passwords after first mount
   componentDidMount = () => {
     this.getCompanies();
   };

@@ -17,7 +17,7 @@ export default class AddCompany extends Component {
       name: event.target.value,
     });
   }
-  handleSubmit = () => {
+  handleSubmit() {
     console.log(
       JSON.stringify({
         userId: "5e9ef78f27e87c78e618928f",
@@ -36,7 +36,7 @@ export default class AddCompany extends Component {
     })
       .then(this.props.history.push("/"))
       .catch((err) => console.log(err));
-  };
+  }
   render() {
     return (
       <React.Fragment>

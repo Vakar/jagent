@@ -1,8 +1,5 @@
-import AddBoxIcon from "@material-ui/icons/AddBox";
-import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Link from "@material-ui/core/Link";
 import React from "react";
@@ -28,9 +25,6 @@ export default function AddCard() {
           </CardContent>
         </Link>
       </CardActionArea>
-      <CardActions>
-        <Button startIcon={<AddBoxIcon />}>Add</Button>
-      </CardActions>
     </Card>
   );
 }
