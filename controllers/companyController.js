@@ -5,7 +5,8 @@ const BAD_REQUEST = 400;
 /* Get all companies */
 exports.get = async (req, res) => {
   try {
-    const companies = await Company.find();
+    const userId = req.user._id;
+    const companies = await Company.find({ userId: userId });
     res.json(companies);
   } catch (err) {
     res.status(BAD_REQUEST);
