@@ -1,7 +1,6 @@
 const dbMock = require("./db.mock");
 const app = require("../app");
 const chai = require("chai");
-const User = require("../models/user");
 const Vacancy = require("../models/vacancy");
 const bcrypt = require("bcrypt");
 const session = require("supertest-session");
