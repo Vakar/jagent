@@ -1,6 +1,6 @@
 # HR
 
-HR is a solution for freelance human recruiters. It's provides simple work with multiple companies.
+HR is a solution for human recruiters. It provides simple work with multiple vacancies.
 
 ## Installation
 
