@@ -5,34 +5,14 @@ const User = require("../models/user");
 const Vacancy = require("../models/vacancy");
 const bcrypt = require("bcrypt");
 const session = require("supertest-session");
+const { HTTP_OK, HTTP_FOUND } = require("../util/httpConstants");
+const { newUser, newVacancy } = require("../models/modelFactory");
+const { credentials } = require("./testConstants");
 
 /* Config chai */
 chai.should();
 
-const HTTP_OK = 200;
-const HTTP_FOUND = 302;
 const API_PATH = "/api/rest/vacancies";
-
-const credentials = {
-  username: "user",
-  password: "1234",
-};
-
-/* Factory method for User mongoose model */
-const newUser = (username, pswdHash) => {
-  return new User({
-    username: username,
-    password: pswdHash,
-  });
-};
-
-/* Factory method for Vacancy mongoose model */
-const newVacancy = (userId, name) => {
-  return new Vacancy({
-    userId: userId,
-    name: name,
-  });
-};
 
 /* Convert mongoose document to plain JS object */
 const documentToObject = (doc) => {
@@ -86,11 +66,8 @@ const authorize = async () => {
 };
 
 describe("COMPANY CONTROLLER TEST", () => {
-  before(async () => {
-    await dbMock.connect();
-  });
-
   beforeEach(async () => {
+    await dbMock.connect();
     await populateUsers();
     await populateCompanies();
     await authorize();
@@ -98,9 +75,6 @@ describe("COMPANY CONTROLLER TEST", () => {
 
   afterEach(async () => {
     await dbMock.clear();
-  });
-
-  after(async () => {
     await dbMock.close();
   });
 
