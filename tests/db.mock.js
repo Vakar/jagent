@@ -3,21 +3,26 @@ const { MongoMemoryServer } = require("mongodb-memory-server");
 
 const mongod = new MongoMemoryServer();
 
-module.exports.dbUri = async () => {};
+const mongooseOpts = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+};
 
 /**
  * Connect to the in-memory database.
  */
-module.exports.connect = async () => {
+const openConnection = async () => {
   const uri = await mongod.getConnectionString();
-
-  const mongooseOpts = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  };
-
   await mongoose.connect(uri, mongooseOpts);
+};
+
+module.exports.connect = async () => {
+  const connectionState = mongoose.connection.readyState;
+  const CONNECTED = 1;
+  if (connectionState !== CONNECTED) {
+    await openConnection();
+  }
 };
 
 /**
