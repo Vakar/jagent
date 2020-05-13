@@ -2,7 +2,7 @@ const dbMock = require("./db.mock");
 const app = require("../app");
 const chai = require("chai");
 const User = require("../models/user");
-const Company = require("../models/company");
+const Vacancy = require("../models/vacancy");
 const bcrypt = require("bcrypt");
 const session = require("supertest-session");
 
@@ -11,7 +11,7 @@ chai.should();
 
 const HTTP_OK = 200;
 const HTTP_FOUND = 302;
-const API_PATH = "/api/rest/companies";
+const API_PATH = "/api/rest/vacancies";
 
 const credentials = {
   username: "user",
@@ -26,9 +26,9 @@ const newUser = (username, pswdHash) => {
   });
 };
 
-/* Factory method for Company mongoose model */
-const newCompany = (userId, name) => {
-  return new Company({
+/* Factory method for Vacancy mongoose model */
+const newVacancy = (userId, name) => {
+  return new Vacancy({
     userId: userId,
     name: name,
   });
@@ -45,7 +45,7 @@ let user;
 let appUser;
 
 /*
- * Array of saved to database company objects
+ * Array of saved to database vacancy objects
  * that belong to the authorized users.
  */
 let userCompanies;
@@ -59,16 +59,16 @@ const populateUsers = async () => {
   appUser = documentToObject(doc2);
 };
 
-/* Populate companies database collection */
+/* Populate vacancies database collection */
 const populateCompanies = async () => {
-  const company1 = newCompany(appUser._id, "company1");
-  const company2 = newCompany(appUser._id, "company2");
-  await newCompany(user._id, "company3").save();
-  const company1Doc = await company1.save();
-  const company2Doc = await company2.save();
-  const company1Obj = documentToObject(company1Doc);
-  const company2Obj = documentToObject(company2Doc);
-  userCompanies = [company1Obj, company2Obj];
+  const vacancy1 = newVacancy(appUser._id, "vacancy1");
+  const vacancy2 = newVacancy(appUser._id, "vacancy2");
+  await newVacancy(user._id, "vacancy3").save();
+  const vacancy1Doc = await vacancy1.save();
+  const vacancy2Doc = await vacancy2.save();
+  const vacancy1Obj = documentToObject(vacancy1Doc);
+  const vacancy2Obj = documentToObject(vacancy2Doc);
+  userCompanies = [vacancy1Obj, vacancy2Obj];
 };
 
 /* Authorized session for api testing */
@@ -104,7 +104,7 @@ describe("COMPANY CONTROLLER TEST", () => {
     await dbMock.close();
   });
 
-  it(`GET: ${API_PATH} | get companies belong to authorized user`, (done) => {
+  it(`GET: ${API_PATH} | get vacancies belong to authorized user`, (done) => {
     authorizedSession
       .get(API_PATH)
       .expect((res) => {
@@ -113,7 +113,7 @@ describe("COMPANY CONTROLLER TEST", () => {
       .expect(HTTP_OK, done);
   });
 
-  it(`GET: ${API_PATH} | get company from database by id`, (done) => {
+  it(`GET: ${API_PATH} | get vacancy from database by id`, (done) => {
     authorizedSession
       .get(`${API_PATH}/${userCompanies[0]._id}`)
       .expect((res) => {
@@ -122,66 +122,66 @@ describe("COMPANY CONTROLLER TEST", () => {
       .expect(HTTP_OK, done);
   });
 
-  it(`POST: ${API_PATH} | save company to database`, async () => {
-    const companyName = "newCompany";
+  it(`POST: ${API_PATH} | save vacancy to database`, async () => {
+    const vacancyName = "newVacancy";
     await authorizedSession
       .post(API_PATH)
-      .send({ userId: appUser._id, name: companyName })
+      .send({ userId: appUser._id, name: vacancyName })
       .set("Accept", "application/json")
       .expect(HTTP_OK);
-    const docs = await Company.find({
-      name: companyName,
+    const docs = await Vacancy.find({
+      name: vacancyName,
     });
     docs.length.should.to.equal(1);
-    const company = documentToObject(docs[0]);
-    company.should.to.include({ userId: appUser._id, name: companyName });
+    const vacancy = documentToObject(docs[0]);
+    vacancy.should.to.include({ userId: appUser._id, name: vacancyName });
   });
 
-  it(`POST: ${API_PATH} | return saved company as json`, (done) => {
-    const companyName = "newCompany";
+  it(`POST: ${API_PATH} | return saved vacancy as json`, (done) => {
+    const vacancyName = "newVacancy";
     authorizedSession
       .post(API_PATH)
-      .send({ userId: appUser._id, name: companyName })
+      .send({ userId: appUser._id, name: vacancyName })
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect((res) => {
-        res.body.should.to.include({ userId: appUser._id, name: companyName });
+        res.body.should.to.include({ userId: appUser._id, name: vacancyName });
       })
       .expect(HTTP_OK, done);
   });
 
-  it(`PUT: ${API_PATH} | update company in database`, async () => {
-    const company = userCompanies[0];
-    const newCompanyName = "new company name";
-    company.name = newCompanyName;
+  it(`PUT: ${API_PATH} | update vacancy in database`, async () => {
+    const vacancy = userCompanies[0];
+    const newVacancyName = "new vacancy name";
+    vacancy.name = newVacancyName;
     await authorizedSession
       .put(API_PATH)
-      .send(company)
+      .send(vacancy)
       .set("Accept", "application/json")
       .expect(HTTP_OK);
-    const doc = await Company.findById(company._id);
-    const updatedCompany = documentToObject(doc);
-    updatedCompany.should.to.include(company);
+    const doc = await Vacancy.findById(vacancy._id);
+    const updatedVacancy = documentToObject(doc);
+    updatedVacancy.should.to.include(vacancy);
   });
 
-  it(`PUT: ${API_PATH} | return updated company as json`, (done) => {
-    const company = userCompanies[0];
-    const newCompanyName = "new company name";
-    company.name = newCompanyName;
+  it(`PUT: ${API_PATH} | return updated vacancy as json`, (done) => {
+    const vacancy = userCompanies[0];
+    const newVacancyName = "new vacancy name";
+    vacancy.name = newVacancyName;
     authorizedSession
       .put(API_PATH)
-      .send(company)
+      .send(vacancy)
       .set("Accept", "application/json")
       .expect((res) => {
-        res.body.should.to.include(company);
+        res.body.should.to.include(vacancy);
       })
       .expect(HTTP_OK, done);
   });
 
-  it(`DELETE: ${API_PATH} | delete company by id from database`, async () => {
-    const companyId = userCompanies[0]._id;
-    await authorizedSession.delete(`${API_PATH}/${companyId}`).expect(HTTP_OK);
-    const isCompanyExists = await Company.exists({ _id: companyId });
-    isCompanyExists.should.to.equal(false);
+  it(`DELETE: ${API_PATH} | delete vacancy by id from database`, async () => {
+    const vacancyId = userCompanies[0]._id;
+    await authorizedSession.delete(`${API_PATH}/${vacancyId}`).expect(HTTP_OK);
+    const isVacancyExists = await Vacancy.exists({ _id: vacancyId });
+    isVacancyExists.should.to.equal(false);
   });
 });

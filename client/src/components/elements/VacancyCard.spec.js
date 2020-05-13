@@ -7,21 +7,21 @@ import {
   Typography,
 } from "@material-ui/core";
 
-import CompanyCard from "./CompanyCard";
 import React from "react";
+import VacancyCard from "./VacancyCard";
 import { createRenderer } from "react-test-renderer/shallow";
 
 const setup = (propOverrides) => {
   const props = Object.assign(
     {
-      deleteCompany: jest.fn(),
-      company: { _id: "5e9ef982a325ed7eb2887c10", name: "someName" },
+      deleteVacancy: jest.fn(),
+      vacancy: { _id: "5e9ef982a325ed7eb2887c10", name: "someName" },
     },
     propOverrides
   );
 
   const renderer = createRenderer();
-  renderer.render(<CompanyCard {...props} />);
+  renderer.render(<VacancyCard {...props} />);
   const output = renderer.getRenderOutput();
 
   return {
@@ -30,7 +30,7 @@ const setup = (propOverrides) => {
   };
 };
 
-describe("component CompanyCard", () => {
+describe("component VacancyCard", () => {
   it("should render container", () => {
     const { output } = setup();
     const card = output;
@@ -59,14 +59,14 @@ describe("component CompanyCard", () => {
           expect(typography.type).toBe(Typography);
         });
 
-        it("should show company name properly", () => {
-          const COMPANY_NAME = "name";
+        it("should show vacancy name properly", () => {
+          const vacancyName = "name";
           const { output } = setup({
-            company: { _id: "1", name: COMPANY_NAME },
+            vacancy: { _id: "1", name: vacancyName },
           });
           const typography =
             output.props.children[0].props.children.props.children;
-          expect(typography.props.children).toBe(COMPANY_NAME);
+          expect(typography.props.children).toBe(vacancyName);
         });
       });
     });

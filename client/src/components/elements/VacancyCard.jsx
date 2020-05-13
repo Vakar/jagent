@@ -16,21 +16,21 @@ const useStyles = makeStyles({
   },
 });
 
-const CompanyCard = ({ company, deleteCompany }) => {
+const VacancyCard = ({ vacancy, deleteVacancy }) => {
   const classes = useStyles();
   return (
     <Card className={classes.root} variant="outlined">
       <CardActionArea>
         <CardContent>
           <Typography variant="h5" component="h2">
-            {company.name}
+            {vacancy.name}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button startIcon={<EditIcon />}>Edit</Button>
         <Button
-          onClick={() => deleteCompany(company._id)}
+          onClick={() => deleteVacancy(vacancy._id)}
           startIcon={<DeleteIcon />}
         >
           Delete
@@ -40,12 +40,12 @@ const CompanyCard = ({ company, deleteCompany }) => {
   );
 };
 
-CompanyCard.propTypes = {
-  company: PropTypes.shape({
+VacancyCard.propTypes = {
+  vacancy: PropTypes.shape({
     name: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired,
   }),
-  deleteCompany: PropTypes.func.isRequired,
+  deleteVacancy: PropTypes.func.isRequired,
 };
 
-export default CompanyCard;
+export default VacancyCard;

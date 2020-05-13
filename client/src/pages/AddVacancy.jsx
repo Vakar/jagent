@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import GridContainer from "../components/elements/GridContainer";
 import TextField from "@material-ui/core/TextField";
 
-export default class AddCompany extends Component {
+export default class AddVacancy extends Component {
   constructor(props) {
     super(props);
     this.handleName = this.handleName.bind(this);
@@ -18,7 +18,7 @@ export default class AddCompany extends Component {
     });
   }
   handleSubmit() {
-    fetch(API.companies(), {
+    fetch(API.vacancies(), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +40,7 @@ export default class AddCompany extends Component {
               required
               id="name"
               name="name"
-              label="Company name"
+              label="Vacancy name"
               onInput={this.handleName}
               value={this.state.name}
               fullWidth

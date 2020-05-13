@@ -2,43 +2,43 @@ import React, { Component } from "react";
 
 import API from "./util/api";
 import AddCard from "./components/elements/AddCard";
-import CompanyCard from "./components/elements/CompanyCard";
 import Grid from "@material-ui/core/Grid";
 import GridContainer from "./components/elements/GridContainer";
+import VacancyCard from "./components/elements/VacancyCard";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { companies: [] };
-    this.deleteCompany = this.deleteCompany.bind(this);
+    this.state = { vacancies: [] };
+    this.deleteVacancy = this.deleteVacancy.bind(this);
   }
 
-  getCompanies() {
-    fetch("/api/rest/companies")
+  getVacancies() {
+    fetch("/api/rest/vacancies")
       .then((res) => res.json())
-      .then((companies) => this.setState({ companies }));
+      .then((vacancies) => this.setState({ vacancies }));
   }
 
   componentDidMount = () => {
-    this.getCompanies();
+    this.getVacancies();
   };
 
-  deleteCompany = (id) => {
-    const url = API.deleteCompany(id);
+  deleteVacancy = (id) => {
+    const url = API.deleteVacancy(id);
     fetch(url, { method: "DELETE" }).then(() => {
-      const companies = this.state.companies.filter(
-        (company) => company._id !== id
+      const vacancies = this.state.vacancies.filter(
+        (vacancy) => vacancy._id !== id
       );
-      this.setState({ companies: companies });
+      this.setState({ vacancies: vacancies });
     });
   };
 
   render() {
     return (
       <GridContainer>
-        {this.state.companies.map((company) => (
-          <Grid key={company._id} item>
-            <CompanyCard deleteCompany={this.deleteCompany} company={company} />
+        {this.state.vacancies.map((vacancy) => (
+          <Grid key={vacancy._id} item>
+            <VacancyCard deleteVacancy={this.deleteVacancy} vacancy={vacancy} />
           </Grid>
         ))}
         <Grid item>

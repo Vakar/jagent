@@ -17,10 +17,10 @@ export default function AddCard() {
   return (
     <Card className={classes.root} variant="outlined">
       <CardActionArea>
-        <Link href="/addCompany" color="textPrimary" underline="none">
+        <Link href="/addVacancy" color="textPrimary" underline="none">
           <CardContent align="center">
             <Typography variant="h5" component="h2">
-              Add new company
+              Add new vacancy
             </Typography>
           </CardContent>
         </Link>

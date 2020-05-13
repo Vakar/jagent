@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
-const companyController = require("../controllers/companyController");
+const vacancyController = require("../controllers/vacancyController");
 
 const jsonParser = bodyParser.json();
 
-/* COMPANIES REST API */
+/* vacancies REST API */
 
-router.get("/companies", companyController.get);
-router.get("/companies/:companyId", companyController.getById);
-router.post("/companies", jsonParser, companyController.save);
-router.put("/companies", companyController.update);
-router.delete("/companies/:companyId", companyController.remove);
+router.get("/vacancies", vacancyController.get);
+router.get("/vacancies/:vacancyId", vacancyController.getById);
+router.post("/vacancies", jsonParser, vacancyController.save);
+router.put("/vacancies", vacancyController.update);
+router.delete("/vacancies/:vacancyId", vacancyController.remove);
 
 module.exports = router;

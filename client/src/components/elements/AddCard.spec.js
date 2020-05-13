@@ -36,10 +36,10 @@ describe("container AddCard", () => {
         expect(link.type).toBe(Link);
       });
 
-      it("href should be: /addCompany", () => {
+      it("href should be: /addVacancy", () => {
         const output = setup();
         const link = output.props.children.props.children;
-        expect(link.props.href).toBe("/addCompany");
+        expect(link.props.href).toBe("/addVacancy");
       });
 
       describe("CardContent", () => {

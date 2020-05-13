@@ -1,41 +1,41 @@
-const Company = require("../models/company");
+const Vacancy = require("../models/vacancy");
 
 const BAD_REQUEST = 400;
 
-/* Get all companies */
+/* Get all vacancies */
 exports.get = async (req, res) => {
   try {
     const userId = req.user._id;
-    const companies = await Company.find({ userId: userId });
-    res.json(companies);
+    const vacancies = await Vacancy.find({ userId: userId });
+    res.json(vacancies);
   } catch (err) {
     res.status(BAD_REQUEST);
     res.json(err);
   }
 };
 
-/* Get company by id */
+/* Get vacancy by id */
 exports.getById = async (req, res) => {
   try {
-    const companyId = req.params.companyId;
-    const company = await Company.findById(companyId);
-    res.json(company);
+    const vacancyId = req.params.vacancyId;
+    const vacancy = await Vacancy.findById(vacancyId);
+    res.json(vacancy);
   } catch (err) {
     res.status(BAD_REQUEST);
     res.json(err);
   }
 };
 
-/* Save company */
+/* Save vacancy */
 exports.save = async (req, res) => {
   try {
     // const userId = req.user._id; //! For test purpose
     const { userId, name } = req.body;
-    const company = new Company({
+    const vacancy = new Vacancy({
       userId: userId,
       name: name,
     });
-    const doc = await company.save();
+    const doc = await vacancy.save();
     res.json(doc);
   } catch (err) {
     res.status(BAD_REQUEST);
@@ -43,13 +43,13 @@ exports.save = async (req, res) => {
   }
 };
 
-/* Update company */
+/* Update vacancy */
 exports.update = async (req, res) => {
   try {
-    const { _id: companyId, name } = req.body;
-    const company = await Company.findById(companyId);
-    company.name = name;
-    const doc = await company.save();
+    const { _id: vacancyId, name } = req.body;
+    const vacancy = await Vacancy.findById(vacancyId);
+    vacancy.name = name;
+    const doc = await vacancy.save();
     res.json(doc);
   } catch (err) {
     res.status(BAD_REQUEST);
@@ -57,11 +57,11 @@ exports.update = async (req, res) => {
   }
 };
 
-/* Remove company */
+/* Remove vacancy */
 exports.remove = async (req, res) => {
   try {
-    const companyId = req.params.companyId;
-    await Company.findByIdAndRemove(companyId);
+    const vacancyId = req.params.vacancyId;
+    await Vacancy.findByIdAndRemove(vacancyId);
     res.send("OK");
   } catch (err) {
     res.status(BAD_REQUEST);

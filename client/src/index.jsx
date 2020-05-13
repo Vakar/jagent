@@ -2,12 +2,12 @@ import "./index.css";
 
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
-import AddCompany from "./pages/AddCompany";
-import Companies from "./App";
+import AddVacancy from "./pages/AddVacancy";
 import Container from "./components/commons/Container";
 import Footer from "./components/commons/Footer";
 import Header from "./components/commons/Header";
 import React from "react";
+import Vacancies from "./App";
 import { render } from "react-dom";
 
 const routing = (
@@ -15,8 +15,8 @@ const routing = (
     <Container>
       <Header />
       <Switch>
-        <Route exact path="/" component={Companies} />
-        <Route exact path="/addCompany" component={AddCompany} />
+        <Route exact path="/" component={Vacancies} />
+        <Route exact path="/addVacancy" component={AddVacancy} />
       </Switch>
       <Footer />
     </Container>
