@@ -17,7 +17,7 @@ const openConnection = async () => {
   await mongoose.connect(uri, mongooseOpts);
 };
 
-module.exports.connect = async () => {
+exports.connect = async () => {
   const connectionState = mongoose.connection.readyState;
   const CONNECTED = 1;
   if (connectionState !== CONNECTED) {
@@ -28,7 +28,7 @@ module.exports.connect = async () => {
 /**
  * Drop database, close the connection and stop mongod.
  */
-module.exports.close = async () => {
+exports.close = async () => {
   await mongoose.connection.dropDatabase();
   await mongoose.connection.close();
   await mongod.stop();
@@ -37,7 +37,7 @@ module.exports.close = async () => {
 /**
  * Remove all the data for all db collections.
  */
-module.exports.clear = async () => {
+exports.clear = async () => {
   const collections = mongoose.connection.collections;
 
   for (const key in collections) {
