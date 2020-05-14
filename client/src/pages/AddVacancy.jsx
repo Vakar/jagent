@@ -24,7 +24,6 @@ export default class AddVacancy extends Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userId: "5e9ef78f27e87c78e618928f", // todo: don't use hard code user id
         name: this.state.name,
       }),
     })

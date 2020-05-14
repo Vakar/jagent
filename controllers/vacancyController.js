@@ -29,8 +29,8 @@ exports.getById = async (req, res) => {
 /* Save vacancy */
 exports.save = async (req, res) => {
   try {
-    // const userId = req.user._id; //! For test purpose
-    const { userId, name } = req.body;
+    const userId = req.user._id;
+    const { name } = req.body;
     const vacancy = new Vacancy({
       userId: userId,
       name: name,

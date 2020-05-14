@@ -99,7 +99,7 @@ describe("COMPANY CONTROLLER TEST", () => {
     const vacancyName = "newVacancy";
     await authorizedSession
       .post(API_PATH)
-      .send({ userId: appUser._id, name: vacancyName })
+      .send({ name: vacancyName })
       .set("Accept", "application/json")
       .expect(HTTP_OK);
     const docs = await Vacancy.find({
