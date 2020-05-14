@@ -15,7 +15,7 @@ const routing = (
     <Container>
       <Header />
       <Switch>
-        <Route exact path="/" component={Vacancies} />
+        <Route exact path="/index.html" component={Vacancies} />
         <Route exact path="/addVacancy" component={AddVacancy} />
       </Switch>
       <Footer />
