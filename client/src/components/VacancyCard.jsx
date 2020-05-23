@@ -4,7 +4,6 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
 import PropTypes from "prop-types";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
@@ -22,15 +21,14 @@ const VacancyCard = ({ vacancy, deleteVacancy }) => {
     <Card className={classes.root} variant="outlined">
       <CardActionArea>
         <CardContent>
-          <Typography variant="h5" component="h2">
+          <Typography variant="h5" component="h2" align="center">
             {vacancy.name}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button startIcon={<EditIcon />}>Edit</Button>
         <Button
-          onClick={() => deleteVacancy(vacancy._id)}
+          onClick={() => deleteVacancy(vacancy.id)}
           startIcon={<DeleteIcon />}
         >
           Delete
@@ -42,8 +40,8 @@ const VacancyCard = ({ vacancy, deleteVacancy }) => {
 
 VacancyCard.propTypes = {
   vacancy: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    _id: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    name: PropTypes.string,
   }),
   deleteVacancy: PropTypes.func.isRequired,
 };

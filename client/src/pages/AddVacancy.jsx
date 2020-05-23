@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 
-import API from "../util/api";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import GridContainer from "../components/elements/GridContainer";
+import GridContainer from "../components/GridContainer";
 import TextField from "@material-ui/core/TextField";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { saveVacancy } from "../api/vacancies";
 
-export default class AddVacancy extends Component {
+class AddVacancy extends Component {
   constructor(props) {
     super(props);
     this.handleName = this.handleName.bind(this);
@@ -18,17 +20,9 @@ export default class AddVacancy extends Component {
     });
   }
   handleSubmit() {
-    fetch(API.vacancies(), {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: this.state.name,
-      }),
-    })
-      .then(this.props.history.push("/"))
-      .catch((err) => console.log(err));
+    const { saveVacancy } = this.props;
+    saveVacancy(this.state.name);
+    this.props.history.push("/index.html");
   }
   render() {
     return (
@@ -59,3 +53,8 @@ export default class AddVacancy extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ saveVacancy: saveVacancy }, dispatch);
+
+export default connect(null, mapDispatchToProps)(AddVacancy);

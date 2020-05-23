@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 
 import React from "react";
+import Vacancy from "../models/vacancy";
 import VacancyCard from "./VacancyCard";
 import { createRenderer } from "react-test-renderer/shallow";
 
@@ -15,7 +16,7 @@ const setup = (propOverrides) => {
   const props = Object.assign(
     {
       deleteVacancy: jest.fn(),
-      vacancy: { _id: "5e9ef982a325ed7eb2887c10", name: "someName" },
+      vacancy: new Vacancy("5e9ef982a325ed7eb2887c10", "someName"),
     },
     propOverrides
   );
@@ -79,18 +80,10 @@ describe("component VacancyCard", () => {
       expect(cardAction.type).toBe(CardActions);
     });
 
-    describe("Edit Button", () => {
-      it("should render", () => {
-        const { output } = setup();
-        const [editButton] = output.props.children[1].props.children;
-        expect(editButton.type).toBe(Button);
-      });
-    });
-
     describe("Delete Button", () => {
       it("should render", () => {
         const { output } = setup();
-        const [, deleteButton] = output.props.children[1].props.children;
+        const deleteButton = output.props.children[1].props.children;
         expect(deleteButton.type).toBe(Button);
       });
     });
