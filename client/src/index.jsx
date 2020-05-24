@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { Provider } from "react-redux";
 import React from "react";
+import SystemMessage from "./containers/SystemMassage";
 import Vacancies from "./pages/Vacancies";
 import reducer from "./reducers";
 import { render } from "react-dom";
@@ -26,6 +27,7 @@ const routing = (
           <Route exact path="/index.html" component={Vacancies} />
           <Route exact path="/addVacancy" component={AddVacancy} />
         </Switch>
+        <SystemMessage />
         <Footer />
       </Container>
     </Router>

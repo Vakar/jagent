@@ -7,6 +7,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import PropTypes from "prop-types";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
+import Vacancy from "../models/vacancy";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
@@ -39,10 +40,7 @@ const VacancyCard = ({ vacancy, deleteVacancy }) => {
 };
 
 VacancyCard.propTypes = {
-  vacancy: PropTypes.shape({
-    id: PropTypes.string,
-    name: PropTypes.string,
-  }),
+  vacancy: PropTypes.instanceOf(Vacancy),
   deleteVacancy: PropTypes.func.isRequired,
 };
 

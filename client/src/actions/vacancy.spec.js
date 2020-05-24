@@ -1,5 +1,11 @@
-import * as actions from "./index";
-import * as types from "./types";
+import * as actions from "./vacancy";
+
+import {
+  ADD_VACANCY,
+  DELETE_VACANCY,
+  EDIT_VACANCY,
+  GET_VACANCIES,
+} from "./types";
 
 import Vacancy from "../models/vacancy";
 import chai from "chai";
@@ -13,37 +19,29 @@ const vacancies = [vacancy, vacancy2];
 describe("vacancy actions", () => {
   it("addVacancy should create ADD_VACANCY action", () => {
     actions.addVacancy(vacancy).should.to.deep.equal({
-      type: types.ADD_VACANCY,
+      type: ADD_VACANCY,
       vacancy: vacancy,
     });
   });
 
   it("deleteVacancy should create DELETE_VACANCY action", () => {
     actions.deleteVacancy(vacancy.id).should.to.deep.equal({
-      type: types.DELETE_VACANCY,
+      type: DELETE_VACANCY,
       id: vacancy.id,
     });
   });
 
   it("editVacancy should create EDIT_VACANCY action", () => {
     actions.editVacancy(vacancy).should.to.deep.equal({
-      type: types.EDIT_VACANCY,
+      type: EDIT_VACANCY,
       vacancy: vacancy,
     });
   });
 
   it("getVacancies should create GET_VACANCIES action", () => {
     actions.getVacancies(vacancies).should.to.deep.equal({
-      type: types.GET_VACANCIES,
+      type: GET_VACANCIES,
       vacancies: vacancies,
-    });
-  });
-
-  it("errorAction should create ERROR action", () => {
-    const errorMessage = "error message";
-    actions.errorAction(errorMessage).should.to.deep.equal({
-      type: types.ERROR,
-      error: errorMessage,
     });
   });
 });

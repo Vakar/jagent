@@ -1,11 +1,13 @@
+import { ERROR, SUCCESS } from "../models/alertTypes";
 import {
   addVacancy,
   deleteVacancy,
-  errorAction,
   getVacancies,
+  setSystemAlert,
 } from "../actions";
 
 import API from "./apiRouts";
+import Alert from "../models/alert";
 import Vacancy from "../models/vacancy";
 
 export const fetchVacancies = () => {
@@ -21,8 +23,10 @@ export const fetchVacancies = () => {
         dispatch(getVacancies(vacancies));
         return res;
       })
-      .catch((error) => {
-        dispatch(errorAction(error));
+      .catch(() => {
+        dispatch(
+          setSystemAlert(new Alert("can't load vacancies from server", ERROR))
+        );
       });
   };
 };
@@ -33,9 +37,14 @@ export const removeVacancy = (id) => {
     fetch(url, { method: "DELETE" })
       .then(() => {
         dispatch(deleteVacancy(id));
+        dispatch(
+          setSystemAlert(new Alert("successfully remove vacancy"), SUCCESS)
+        );
       })
-      .catch((error) => {
-        dispatch(errorAction(error));
+      .catch(() => {
+        dispatch(
+          setSystemAlert(new Alert("can't remove vacancy from server", ERROR))
+        );
       });
   };
 };
@@ -52,14 +61,18 @@ export const saveVacancy = (name) => {
       }),
     })
       .then((res) => {
-        res.json();
+        const json = res.json();
+        return json;
       })
       .then((res) => {
         const savedVacancy = new Vacancy(res._id, res.name);
         dispatch(addVacancy(savedVacancy));
+        dispatch(
+          setSystemAlert(new Alert("successfully save vacancy"), SUCCESS)
+        );
       })
-      .catch((error) => {
-        dispatch(errorAction(error));
+      .catch(() => {
+        dispatch(setSystemAlert(new Alert("can't save vacancy", ERROR)));
       });
   };
 };

@@ -17,7 +17,6 @@ describe("vacancies reducer", () => {
     defaultVacancy = new Vacancy("5e93293ddd39d295dae546b1", "default_vacancy");
     newVacancy = new Vacancy("5ebd5eb9b7dd175ce77e904a", "vacancy_name");
     initialState = {
-      error: null,
       selectedVacancy: null,
       vacancies: [],
     };
@@ -34,7 +33,6 @@ describe("vacancies reducer", () => {
   it("ADD_VACANCY | should add vacancy to vacancies array ", () => {
     const addAction = addVacancy(newVacancy);
     vacancies(initialState, addAction).should.to.deep.equal({
-      error: null,
       selectedVacancy: null,
       vacancies: [newVacancy],
     });

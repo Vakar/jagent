@@ -2,7 +2,6 @@ import {
   ADD_VACANCY,
   DELETE_VACANCY,
   EDIT_VACANCY,
-  ERROR,
   GET_VACANCIES,
 } from "../actions/types";
 
@@ -11,7 +10,6 @@ import produce from "immer";
 const initialState = {
   selectedVacancy: null,
   vacancies: [],
-  error: null,
 };
 
 export default function vacancies(baseState = initialState, action) {
@@ -45,10 +43,6 @@ export default function vacancies(baseState = initialState, action) {
     case GET_VACANCIES:
       return produce(baseState, (draftState) => {
         draftState.vacancies = action.vacancies;
-      });
-    case ERROR:
-      return produce(baseState, (draftState) => {
-        draftState.error = action.error;
       });
     default:
       return baseState;

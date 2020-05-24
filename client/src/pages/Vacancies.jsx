@@ -35,7 +35,6 @@ const mapStateToProps = (state) => {
   return {
     error: state.vacancy.error,
     vacancies: state.vacancy.vacancies,
-    pending: state.vacancy.pending,
   };
 };
 

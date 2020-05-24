@@ -3,4 +3,5 @@ export const DELETE_VACANCY = "DELETE_VACANCY";
 export const EDIT_VACANCY = "EDIT_VACANCY";
 export const GET_VACANCIES = "FETCH_VACANCIES";
 
-export const ERROR = "ERROR";
+export const SET_SYSTEM_ALERT = "SET_SYSTEM_ALERT";
+export const REMOVE_SYSTEM_ALERT = "REMOVE_SYSTEM_ALERT";
