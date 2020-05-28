@@ -1,7 +1,7 @@
-export const ADD_VACANCY = "ADD_VACANCY";
-export const DELETE_VACANCY = "DELETE_VACANCY";
-export const EDIT_VACANCY = "EDIT_VACANCY";
-export const GET_VACANCIES = "FETCH_VACANCIES";
+export const ADD_JOB = "ADD_JOB";
+export const DELETE_JOB = "DELETE_JOB";
+export const EDIT_JOB = "EDIT_JOB";
+export const GET_JOBS = "FETCH_JOBS";
 
 export const SET_SYSTEM_ALERT = "SET_SYSTEM_ALERT";
 export const REMOVE_SYSTEM_ALERT = "REMOVE_SYSTEM_ALERT";

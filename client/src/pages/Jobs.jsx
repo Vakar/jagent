@@ -3,24 +3,24 @@ import React, { Component } from "react";
 import AddCard from "../components/AddCard";
 import Grid from "@material-ui/core/Grid";
 import GridContainer from "../components/GridContainer";
-import VacancyCard from "../containers/VacancyCard";
+import JobCard from "../containers/JobCard";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { fetchVacancies } from "../api/vacancies";
+import { fetchJobs } from "../api/jobs";
 
 class App extends Component {
   componentDidMount() {
-    const { fetchVacancies } = this.props;
-    fetchVacancies();
+    const { fetchJobs } = this.props;
+    fetchJobs();
   }
 
   render() {
-    const { vacancies } = this.props;
+    const { jobs } = this.props;
     return (
       <GridContainer>
-        {vacancies.map((vacancy) => (
-          <Grid key={vacancy.id} item>
-            <VacancyCard vacancy={vacancy} />
+        {jobs.map((job) => (
+          <Grid key={job.id} item>
+            <JobCard job={job} />
           </Grid>
         ))}
         <Grid item>
@@ -33,12 +33,12 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    error: state.vacancy.error,
-    vacancies: state.vacancy.vacancies,
+    error: state.job.error,
+    jobs: state.job.jobs,
   };
 };
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ fetchVacancies: fetchVacancies }, dispatch);
+  bindActionCreators({ fetchJobs: fetchJobs }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

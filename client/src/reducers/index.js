@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
+import job from "./job";
 import system from "./system";
-import vacancy from "./vacancy";
 
 const rootReducer = combineReducers({
   system,
-  vacancy,
+  job,
 });
 
 export default rootReducer;

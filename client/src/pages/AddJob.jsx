@@ -6,9 +6,9 @@ import GridContainer from "../components/GridContainer";
 import TextField from "@material-ui/core/TextField";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { saveVacancy } from "../api/vacancies";
+import { saveJob } from "../api/jobs";
 
-class AddVacancy extends Component {
+class AddJob extends Component {
   constructor(props) {
     super(props);
     this.handleName = this.handleName.bind(this);
@@ -30,11 +30,11 @@ class AddVacancy extends Component {
   }
 
   isNameLongerThenMinNameLength(name) {
-    return name.length > AddVacancy.MIN_NAME_LENGTH;
+    return name.length > AddJob.MIN_NAME_LENGTH;
   }
 
   isNameNotLongerThenMaxNameLength(name) {
-    return name.length <= AddVacancy.MAX_NAME_LENGTH;
+    return name.length <= AddJob.MAX_NAME_LENGTH;
   }
 
   isNameContainsOnlyLettersOrSpace(name) {
@@ -48,9 +48,9 @@ class AddVacancy extends Component {
     if (!this.isNameContainsOnlyLettersOrSpace(name)) {
       helperText = "Should contains only letters.";
     } else if (!this.isNameLongerThenMinNameLength(name)) {
-      helperText = `Should be longer then ${AddVacancy.MIN_NAME_LENGTH} characters.`;
+      helperText = `Should be longer then ${AddJob.MIN_NAME_LENGTH} characters.`;
     } else if (!this.isNameNotLongerThenMaxNameLength(name)) {
-      helperText = `Shouldn't be longer then ${AddVacancy.MAX_NAME_LENGTH} characters. `;
+      helperText = `Shouldn't be longer then ${AddJob.MAX_NAME_LENGTH} characters. `;
     } else {
       validationState = { error: false };
     }
@@ -70,8 +70,8 @@ class AddVacancy extends Component {
   handleSubmit() {
     const isNameValid = !this.state.nameInputValidationState.error;
     if (isNameValid) {
-      const { saveVacancy } = this.props;
-      saveVacancy(this.state.name);
+      const { saveJob } = this.props;
+      saveJob(this.state.name);
       this.props.history.push("/index.html");
     }
   }
@@ -86,7 +86,7 @@ class AddVacancy extends Component {
               required
               id="name"
               name="name"
-              label="Vacancy name"
+              label="Job name"
               onInput={this.handleName}
               value={this.state.name}
               variant="outlined"
@@ -115,6 +115,6 @@ class AddVacancy extends Component {
 }
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ saveVacancy: saveVacancy }, dispatch);
+  bindActionCreators({ saveJob: saveJob }, dispatch);
 
-export default connect(null, mapDispatchToProps)(AddVacancy);
+export default connect(null, mapDispatchToProps)(AddJob);

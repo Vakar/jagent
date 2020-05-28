@@ -7,22 +7,22 @@ import {
   Typography,
 } from "@material-ui/core";
 
+import Job from "../models/job";
+import JobCard from "./JobCard";
 import React from "react";
-import Vacancy from "../models/vacancy";
-import VacancyCard from "./VacancyCard";
 import { createRenderer } from "react-test-renderer/shallow";
 
 const setup = (propOverrides) => {
   const props = Object.assign(
     {
-      deleteVacancy: jest.fn(),
-      vacancy: new Vacancy("5e9ef982a325ed7eb2887c10", "someName"),
+      deleteJob: jest.fn(),
+      job: new Job("5e9ef982a325ed7eb2887c10", "someName"),
     },
     propOverrides
   );
 
   const renderer = createRenderer();
-  renderer.render(<VacancyCard {...props} />);
+  renderer.render(<JobCard {...props} />);
   const output = renderer.getRenderOutput();
 
   return {
@@ -31,7 +31,7 @@ const setup = (propOverrides) => {
   };
 };
 
-describe("component VacancyCard", () => {
+describe("component JobCard", () => {
   it("should render container", () => {
     const { output } = setup();
     const card = output;
@@ -60,14 +60,14 @@ describe("component VacancyCard", () => {
           expect(typography.type).toBe(Typography);
         });
 
-        it("should show vacancy name properly", () => {
-          const vacancyName = "name";
+        it("should show job name properly", () => {
+          const jobName = "name";
           const { output } = setup({
-            vacancy: { _id: "1", name: vacancyName },
+            job: { _id: "1", name: jobName },
           });
           const typography =
             output.props.children[0].props.children.props.children;
-          expect(typography.props.children).toBe(vacancyName);
+          expect(typography.props.children).toBe(jobName);
         });
       });
     });

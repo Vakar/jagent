@@ -3,14 +3,14 @@ import "./index.css";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { applyMiddleware, createStore } from "redux";
 
-import AddVacancy from "./pages/AddVacancy";
+import AddJob from "./pages/AddJob";
 import Container from "./components/Container";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Jobs from "./pages/Jobs";
 import { Provider } from "react-redux";
 import React from "react";
 import SystemMessage from "./containers/SystemMassage";
-import Vacancies from "./pages/Vacancies";
 import reducer from "./reducers";
 import { render } from "react-dom";
 import thunk from "redux-thunk";
@@ -24,8 +24,8 @@ const routing = (
       <Container>
         <Header />
         <Switch>
-          <Route exact path="/index.html" component={Vacancies} />
-          <Route exact path="/addVacancy" component={AddVacancy} />
+          <Route exact path="/index.html" component={Jobs} />
+          <Route exact path="/addJob" component={AddJob} />
         </Switch>
         <SystemMessage />
         <Footer />

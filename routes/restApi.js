@@ -1,18 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
-const vacancyController = require("../controllers/vacancyController");
+const jobController = require("../controllers/jobController");
 const userController = require("../controllers/userController");
 
 const jsonParser = bodyParser.json();
 
-/* vacancies REST API */
+/* jobs REST API */
 
-router.get("/vacancies", vacancyController.get);
-router.get("/vacancies/:vacancyId", vacancyController.getById);
-router.post("/vacancies", jsonParser, vacancyController.save);
-router.put("/vacancies", vacancyController.update);
-router.delete("/vacancies/:vacancyId", vacancyController.remove);
+router.get("/jobs", jobController.get);
+router.get("/jobs/:jobId", jobController.getById);
+router.post("/jobs", jsonParser, jobController.save);
+router.put("/jobs", jobController.update);
+router.delete("/jobs/:jobId", jobController.remove);
 
 /* user REST API */
 router.get("/user/id", userController.getId);

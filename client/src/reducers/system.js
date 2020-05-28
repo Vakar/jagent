@@ -6,7 +6,7 @@ const initialState = {
   alert: undefined,
 };
 
-export default function vacancies(baseState = initialState, action) {
+export default function jobs(baseState = initialState, action) {
   switch (action.type) {
     case SET_SYSTEM_ALERT:
       return produce(baseState, (draftState) => {

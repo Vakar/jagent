@@ -4,10 +4,10 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import DeleteIcon from "@material-ui/icons/Delete";
+import Job from "../models/job";
 import PropTypes from "prop-types";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import Vacancy from "../models/vacancy";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
@@ -16,22 +16,19 @@ const useStyles = makeStyles({
   },
 });
 
-const VacancyCard = ({ vacancy, deleteVacancy }) => {
+const JobCard = ({ job, deleteJob }) => {
   const classes = useStyles();
   return (
     <Card className={classes.root} variant="outlined">
       <CardActionArea>
         <CardContent>
           <Typography variant="h5" component="h2" align="center">
-            {vacancy.name}
+            {job.name}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button
-          onClick={() => deleteVacancy(vacancy.id)}
-          startIcon={<DeleteIcon />}
-        >
+        <Button onClick={() => deleteJob(job.id)} startIcon={<DeleteIcon />}>
           Delete
         </Button>
       </CardActions>
@@ -39,9 +36,9 @@ const VacancyCard = ({ vacancy, deleteVacancy }) => {
   );
 };
 
-VacancyCard.propTypes = {
-  vacancy: PropTypes.instanceOf(Vacancy),
-  deleteVacancy: PropTypes.func.isRequired,
+JobCard.propTypes = {
+  job: PropTypes.instanceOf(Job),
+  deleteJob: PropTypes.func.isRequired,
 };
 
-export default VacancyCard;
+export default JobCard;

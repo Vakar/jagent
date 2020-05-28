@@ -1,4 +1,4 @@
-const Vacancy = require("./vacancy");
+const Job = require("./job");
 const User = require("./user");
 
 /* Factory method for User mongoose model */
@@ -9,9 +9,9 @@ exports.newUser = (username, pswdHash) => {
   });
 };
 
-/* Factory method for Vacancy mongoose model */
-exports.newVacancy = (userId, name) => {
-  return new Vacancy({
+/* Factory method for Job mongoose model */
+exports.newJob = (userId, name) => {
+  return new Job({
     userId: userId,
     name: name,
   });

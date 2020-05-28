@@ -1,41 +1,41 @@
-const Vacancy = require("../models/vacancy");
+const Job = require("../models/job");
 
 const BAD_REQUEST = 400;
 
-/* Get all vacancies */
+/* Get all jobs */
 exports.get = async (req, res) => {
   try {
     const userId = req.user._id;
-    const vacancies = await Vacancy.find({ userId: userId });
-    res.json(vacancies);
+    const jobs = await Job.find({ userId: userId });
+    res.json(jobs);
   } catch (err) {
     res.status(BAD_REQUEST);
     res.json(err);
   }
 };
 
-/* Get vacancy by id */
+/* Get job by id */
 exports.getById = async (req, res) => {
   try {
-    const vacancyId = req.params.vacancyId;
-    const vacancy = await Vacancy.findById(vacancyId);
-    res.json(vacancy);
+    const jobId = req.params.jobId;
+    const job = await Job.findById(jobId);
+    res.json(job);
   } catch (err) {
     res.status(BAD_REQUEST);
     res.json(err);
   }
 };
 
-/* Save vacancy */
+/* Save job */
 exports.save = async (req, res) => {
   try {
     const userId = req.user._id;
     const { name } = req.body;
-    const vacancy = new Vacancy({
+    const job = new Job({
       userId: userId,
       name: name,
     });
-    const doc = await vacancy.save();
+    const doc = await job.save();
     res.json(doc);
   } catch (err) {
     res.status(BAD_REQUEST);
@@ -43,13 +43,13 @@ exports.save = async (req, res) => {
   }
 };
 
-/* Update vacancy */
+/* Update job */
 exports.update = async (req, res) => {
   try {
-    const { _id: vacancyId, name } = req.body;
-    const vacancy = await Vacancy.findById(vacancyId);
-    vacancy.name = name;
-    const doc = await vacancy.save();
+    const { _id: jobId, name } = req.body;
+    const job = await Job.findById(jobId);
+    job.name = name;
+    const doc = await job.save();
     res.json(doc);
   } catch (err) {
     res.status(BAD_REQUEST);
@@ -57,11 +57,11 @@ exports.update = async (req, res) => {
   }
 };
 
-/* Remove vacancy */
+/* Remove job */
 exports.remove = async (req, res) => {
   try {
-    const vacancyId = req.params.vacancyId;
-    await Vacancy.findByIdAndRemove(vacancyId);
+    const jobId = req.params.jobId;
+    await Job.findByIdAndRemove(jobId);
     res.send("OK");
   } catch (err) {
     res.status(BAD_REQUEST);

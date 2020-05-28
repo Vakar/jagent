@@ -3,7 +3,7 @@ const app = require("../app");
 const chai = require("chai");
 const bcrypt = require("bcrypt");
 const session = require("supertest-session");
-const { HTTP_OK, HTTP_FOUND } = require("../util/httpConstants");
+const { HTTP_OK, HTTP_FOUND } = require("../constants/httpCodes");
 const { credentials } = require("./testConstants");
 const { newUser } = require("../models/modelFactory");
 

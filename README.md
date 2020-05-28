@@ -1,6 +1,6 @@
 # HR
 
-HR is a solution for human recruiters. It provides simple work with multiple vacancies.
+This is a simple solution for job hunters. It provides simple interface for searching and managing job vacancies.
 
 ## Installation
 
