@@ -4,7 +4,9 @@
     "node": true,
     "es6": true
   },
+
   "extends": ["eslint:recommended", "plugin:node/recommended"],
+
   "parserOptions": {
     "ecmaVersion": 11,
     "sourceType": "module",
@@ -12,6 +14,7 @@
       "jsx": true
     }
   },
+
   "parser": "babel-eslint",
   "rules": {
     /* Possible Errors */
@@ -195,5 +198,14 @@
     "max-statements": 0, // specify the maximum number of statement allowed in a function (off by default)
     "no-bitwise": 0, // disallow use of bitwise operators (off by default)
     "no-plusplus": 0 // disallow use of unary operators, ++ and -- (off by default)
-  }
+  },
+
+  // Switch off some rules for tests
+  "overrides": [{
+    "files": ["**/*.test.js", "tests/**/*.js"],
+    "rules": {
+      "node/no-unpublished-require": 0,
+      "node/no-missing-require": 0
+    }
+  }]
 }
