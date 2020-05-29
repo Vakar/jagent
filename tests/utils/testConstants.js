@@ -3,4 +3,5 @@ module.exports = Object.freeze({
     username: "user",
     password: "1234",
   },
+  apiRoot: "/api/rest",
 });

@@ -1,22 +1,17 @@
-const dbMock = require("./db.mock");
+const dbMock = require("./utils/db.mock");
 const app = require("../app");
 const chai = require("chai");
 const bcrypt = require("bcrypt");
 const session = require("supertest-session");
 const { HTTP_OK, HTTP_FOUND } = require("../constants/httpCodes");
-const { credentials } = require("./testConstants");
+const { credentials, apiRoot } = require("./utils/testConstants");
 const { newUser } = require("../models/modelFactory");
+const { docToObj } = require("./utils/mongooseUtil");
 
 /* Config chai */
 chai.should();
 
-const API_PATH = "/api/rest/user";
-
-/* Convert mongoose document to plain JS object */
-const documentToObject = (doc) => {
-  const json = JSON.stringify(doc.toObject());
-  return JSON.parse(json);
-};
+const API_PATH = `${apiRoot}/user`;
 
 /* Authorized user */
 let user;
@@ -25,7 +20,7 @@ let user;
 const populateUsers = async () => {
   const pswdHash = await bcrypt.hash(credentials.password, 10);
   const doc = await newUser(credentials.username, pswdHash).save();
-  user = documentToObject(doc);
+  user = docToObj(doc);
 };
 
 /* Authorized session for api testing */
