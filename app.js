@@ -49,6 +49,7 @@ mongoose.connect(MONGODB_URL, {
   useFindAndModify: false,
 });
 const db = mongoose.connection;
+// eslint-disable-next-line no-console
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 /* PASSPORT */
@@ -136,6 +137,7 @@ app.use(function (req, res, next) {
 });
 
 // Server Error handler
+// eslint-disable-next-line no-unused-vars
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
