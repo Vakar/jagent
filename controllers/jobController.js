@@ -60,7 +60,7 @@ exports.update = async (req, res) => {
 exports.remove = async (req, res) => {
   try {
     const jobId = req.params.jobId;
-    await Job.findByIdAndRemove(jobId);
+    await Job.deleteOne({ _id: jobId });
     res.send("OK");
   } catch (err) {
     res.status(BAD_REQUEST);
