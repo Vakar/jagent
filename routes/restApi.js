@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const jobController = require("../controllers/jobController");
 const userController = require("../controllers/userController");
 const vacancyController = require("../controllers/vacancyController");
+const searchParamsController = require("../controllers/searchParamsController");
 
 const jsonParser = bodyParser.json();
 
@@ -23,5 +24,14 @@ router.get("/user/id", userController.getId);
 router.get("/jobs/:jobId/vacancies", vacancyController.get);
 router.post("/jobs/:jobId/vacancies", jsonParser, vacancyController.save);
 router.delete("/jobs/:jobId/vacancies/:vacancyId", vacancyController.remove);
+
+/* -> JOB SEARCH PARAMETERS */
+router.get("/jobs/:jobId/searchParams", searchParamsController.getByJobId);
+router.post(
+  "/jobs/:jobId/searchParams",
+  jsonParser,
+  searchParamsController.save
+);
+router.delete("/jobs/:jobId/searchParams", searchParamsController.remove);
 
 module.exports = router;
