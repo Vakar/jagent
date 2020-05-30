@@ -1,6 +1,5 @@
 const Job = require("../models/job");
-
-const BAD_REQUEST = 400;
+const { BAD_REQUEST } = require("../constants/httpCodes");
 
 /* Get all jobs */
 exports.get = async (req, res) => {

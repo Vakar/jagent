@@ -1,4 +1,5 @@
 const Vacancy = require("../models/vacancy");
+const { BAD_REQUEST } = require("../constants/httpCodes");
 
 /* Get all vacancies by job id */
 exports.get = async (req, res) => {
