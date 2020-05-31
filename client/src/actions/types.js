@@ -1,7 +1,18 @@
+/* REDUX ACTION TYPES */
+
+/* -> JOB */
 export const ADD_JOB = "ADD_JOB";
 export const DELETE_JOB = "DELETE_JOB";
 export const EDIT_JOB = "EDIT_JOB";
-export const GET_JOBS = "FETCH_JOBS";
+export const GET_JOBS = "GET_JOBS";
 
+/* -> SYSTEM */
 export const SET_SYSTEM_ALERT = "SET_SYSTEM_ALERT";
 export const REMOVE_SYSTEM_ALERT = "REMOVE_SYSTEM_ALERT";
+
+/* -> VACANCIES */
+export const SET_FOUND_VACANCIES = "SET_FOUND_VACANCIES";
+export const CLEAN_FOUND_VACANCIES = "CLEAN_FOUND_VACANCIES";
+export const SET_SAVED_VACANCIES = "SET_SAVED_VACANCIES";
+export const ADD_SAVED_VACANCY = "ADD_SAVED_VACANCY";
+export const DELETE_SAVED_VACANCY = "DELETE_SAVED_VACANCY";

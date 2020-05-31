@@ -1,12 +1,25 @@
 export default class Api {
-  static #API_PREFIX = "/api/rest";
-  static #JOBS_PREFIX = "/jobs";
+  static #API = "/api/rest";
+  static #JOBS = "/jobs";
+  static #VACANCIES = "/vacancies";
 
+  /* API ROUTS */
+
+  /* -> JOB */
   static jobs() {
-    return `${this.#API_PREFIX}${this.#JOBS_PREFIX}`;
+    return `${this.#API}${this.#JOBS}`;
   }
 
   static deleteJob(id) {
-    return `${this.#API_PREFIX}${this.#JOBS_PREFIX}/${id}`;
+    return `${this.#API}${this.#JOBS}/${id}`;
+  }
+
+  /* -> VACANCIES */
+  static vacancies(jobId) {
+    return `${this.#API}${this.#JOBS}/${jobId}/${this.#VACANCIES}`;
+  }
+
+  static deleteVacancy(jobId, vacancyId) {
+    return `${this.#API}${this.#JOBS}/${jobId}/${this.#VACANCIES}/${vacancyId}`;
   }
 }
