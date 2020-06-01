@@ -4,10 +4,13 @@ import {
   ADD_SAVED_VACANCY,
   CLEAN_FOUND_VACANCIES,
   DELETE_SAVED_VACANCY,
+  REMOVE_SEARCH_PARAMS,
   SET_FOUND_VACANCIES,
   SET_SAVED_VACANCIES,
+  SET_SEARCH_PARAMS,
 } from "./types";
 
+import SearchParamsBuilder from "../models/searchParamsBuilder";
 import VacancyBuilder from "../models/vacancyBuilder";
 import chai from "chai";
 
@@ -23,6 +26,12 @@ const vacancy = new VacancyBuilder()
   .build();
 
 const vacancies = [vacancy];
+
+const searchParams = new SearchParamsBuilder()
+  .withCountry("Great Britain")
+  .withCityName("London")
+  .withKeyWords("JS developer")
+  .build();
 
 describe("vacancy actions", () => {
   it("addSearchedVacancies should create SET_FOUND_VACANCIES action", () => {
@@ -56,6 +65,19 @@ describe("vacancy actions", () => {
     actions.deleteSavedVacancy(vacancy).should.to.deep.equal({
       type: DELETE_SAVED_VACANCY,
       vacancy,
+    });
+  });
+
+  it("setSearchParams should create SET_SEARCH_PARAMS action", () => {
+    actions.setSearchParams(searchParams).should.to.deep.equal({
+      type: SET_SEARCH_PARAMS,
+      searchParams,
+    });
+  });
+
+  it("removeSearchParams should create REMOVE_SEARCH_PARAMS action", () => {
+    actions.removeSearchParams().should.to.deep.equal({
+      type: REMOVE_SEARCH_PARAMS,
     });
   });
 });
