@@ -4,6 +4,7 @@ import {
   deleteSavedVacancy,
   removeSearchParams,
   setFoundVacancies,
+  setJobName,
   setSavedVacancies,
   setSearchParams,
 } from "../actions";
@@ -14,6 +15,8 @@ import chai from "chai";
 import job from "./job";
 
 chai.should();
+
+const jobName = "job name";
 
 const vacancy = new VacancyBuilder()
   .with_id("5e93293ddd39d295dae546b1")
@@ -36,11 +39,13 @@ let fullState;
 describe("job reducer", () => {
   beforeEach(() => {
     emptyState = {
+      jobName: undefined,
       foundVacancies: [],
       savedVacancies: [],
       searchParams: undefined,
     };
     fullState = {
+      jobName: undefined,
       foundVacancies: [vacancy],
       savedVacancies: [vacancy],
       searchParams: searchParams,
@@ -51,52 +56,59 @@ describe("job reducer", () => {
     job(undefined, {}).should.to.deep.equal(emptyState);
   });
 
+  it("SET_JOB_NAME | should set job name", () => {
+    const action = setJobName(jobName);
+    const expected = Object.assign({}, emptyState);
+    expected.jobName = jobName;
+    job(emptyState, action).should.to.deep.equal(expected);
+  });
+
   it("SET_FOUND_VACANCIES | should set found vacancies to array", () => {
     const action = setFoundVacancies([vacancy]);
-    fullState.savedVacancies = [];
-    fullState.searchParams = undefined;
-    job(emptyState, action).should.to.deep.equal(fullState);
+    const expected = Object.assign({}, emptyState);
+    expected.foundVacancies = [vacancy];
+    job(emptyState, action).should.to.deep.equal(expected);
   });
 
   it("CLEAN_FOUND_VACANCIES | should clean found vacancies array", () => {
     const action = cleanFoundVacancies();
-    emptyState.savedVacancies = [vacancy];
-    emptyState.searchParams = searchParams;
-    job(fullState, action).should.to.deep.equal(emptyState);
+    const expected = Object.assign({}, fullState);
+    expected.foundVacancies = [];
+    job(fullState, action).should.to.deep.equal(expected);
   });
 
   it("SET_SAVED_VACANCIES | should set saved vacancy to savedVacancies array", () => {
     const action = setSavedVacancies([vacancy]);
-    fullState.foundVacancies = [];
-    fullState.searchParams = undefined;
-    job(emptyState, action).should.to.deep.equal(fullState);
+    const expected = Object.assign({}, emptyState);
+    expected.savedVacancies = [vacancy];
+    job(emptyState, action).should.to.deep.equal(expected);
   });
 
   it("ADD_SAVED_VACANCY | should add saved vacancy to savedVacancies array", () => {
     const action = addSavedVacancy(vacancy);
-    fullState.foundVacancies = [];
-    fullState.searchParams = undefined;
-    job(emptyState, action).should.to.deep.equal(fullState);
+    const expected = Object.assign({}, emptyState);
+    expected.savedVacancies = [vacancy];
+    job(emptyState, action).should.to.deep.equal(expected);
   });
 
   it("DELETE_SAVED_VACANCY | should delete removed vacancy from saved vacancies array", () => {
     const action = deleteSavedVacancy(vacancy);
-    emptyState.foundVacancies = [vacancy];
-    emptyState.searchParams = searchParams;
-    job(fullState, action).should.to.deep.equal(emptyState);
+    const expected = Object.assign({}, fullState);
+    expected.savedVacancies = [];
+    job(fullState, action).should.to.deep.equal(expected);
   });
 
   it("SET_SEARCH_PARAMS | should set search params", () => {
     const action = setSearchParams(searchParams);
-    fullState.foundVacancies = [];
-    fullState.savedVacancies = [];
-    job(emptyState, action).should.to.deep.equal(fullState);
+    const expected = Object.assign({}, emptyState);
+    expected.searchParams = searchParams;
+    job(emptyState, action).should.to.deep.equal(expected);
   });
 
   it("REMOVE_SEARCH_PARAMS | should remove search params", () => {
     const action = removeSearchParams();
-    emptyState.foundVacancies = [vacancy];
-    emptyState.savedVacancies = [vacancy];
-    job(fullState, action).should.to.deep.equal(emptyState);
+    const expected = Object.assign({}, fullState);
+    expected.searchParams = undefined;
+    job(fullState, action).should.to.deep.equal(expected);
   });
 });

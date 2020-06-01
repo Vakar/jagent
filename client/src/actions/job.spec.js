@@ -6,6 +6,7 @@ import {
   DELETE_SAVED_VACANCY,
   REMOVE_SEARCH_PARAMS,
   SET_FOUND_VACANCIES,
+  SET_JOB_NAME,
   SET_SAVED_VACANCIES,
   SET_SEARCH_PARAMS,
 } from "./types";
@@ -15,6 +16,8 @@ import VacancyBuilder from "../models/vacancyBuilder";
 import chai from "chai";
 
 chai.should();
+
+const jobName = "job name";
 
 const vacancy = new VacancyBuilder()
   .with_id("5e93293ddd39d295dae546b1")
@@ -34,6 +37,13 @@ const searchParams = new SearchParamsBuilder()
   .build();
 
 describe("vacancy actions", () => {
+  it("setJobName should create SET_JOB_NAME action", () => {
+    actions.setJobName(jobName).should.to.deep.equal({
+      type: SET_JOB_NAME,
+      jobName,
+    });
+  });
+
   it("addSearchedVacancies should create SET_FOUND_VACANCIES action", () => {
     actions.setFoundVacancies(vacancies).should.to.deep.equal({
       type: SET_FOUND_VACANCIES,
