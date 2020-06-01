@@ -13,7 +13,7 @@ const initialState = {
   savedVacancies: [],
 };
 
-export default function vacancies(baseState = initialState, action) {
+export default function job(baseState = initialState, action) {
   switch (action.type) {
     case SET_FOUND_VACANCIES:
       return produce(baseState, (draftState) => {

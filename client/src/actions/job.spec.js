@@ -1,4 +1,4 @@
-import * as actions from "./vacancy";
+import * as actions from "./job";
 
 import {
   ADD_SAVED_VACANCY,
