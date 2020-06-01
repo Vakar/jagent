@@ -33,8 +33,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    error: state.job.error,
-    jobs: state.job.jobs,
+    error: state.jobs.error,
+    jobs: state.jobs.jobs,
   };
 };
 

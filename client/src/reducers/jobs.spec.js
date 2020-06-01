@@ -2,7 +2,7 @@ import { addJob, deleteJob, editJob } from "../actions";
 
 import Job from "../models/job";
 import chai from "chai";
-import jobs from "./job";
+import jobs from "./jobs";
 
 chai.should();
 

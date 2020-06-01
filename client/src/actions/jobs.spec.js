@@ -1,4 +1,4 @@
-import * as actions from "./job";
+import * as actions from "./jobs";
 
 import { ADD_JOB, DELETE_JOB, EDIT_JOB, GET_JOBS } from "./types";
 
