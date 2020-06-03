@@ -1,25 +1,25 @@
 export default class Api {
   static #API = "/api/rest";
-  static #JOBS = "/jobs";
-  static #VACANCIES = "/vacancies";
+  static #JOBS = "jobs";
+  static #VACANCIES = "vacancies";
 
   /* API ROUTS */
 
   /* -> JOB */
   static jobs() {
-    return `${this.#API}${this.#JOBS}`;
+    return `${this.#API}/${this.#JOBS}`;
   }
 
-  static deleteJob(id) {
-    return `${this.#API}${this.#JOBS}/${id}`;
+  static jobsWithId(id) {
+    return `${this.#API}/${this.#JOBS}/${id}`;
   }
 
   /* -> VACANCIES */
   static vacancies(jobId) {
-    return `${this.#API}${this.#JOBS}/${jobId}/${this.#VACANCIES}`;
+    return `${this.jobsWithId(jobId)}/${this.#VACANCIES}`;
   }
 
-  static deleteVacancy(jobId, vacancyId) {
-    return `${this.#API}${this.#JOBS}/${jobId}/${this.#VACANCIES}/${vacancyId}`;
+  static vacanciesWithId(jobId, vacancyId) {
+    return `${this.jobsWithId(jobId)}/${this.#VACANCIES}/${vacancyId}`;
   }
 }

@@ -32,9 +32,6 @@ export default class VacancyBuilder {
   }
 
   build() {
-    if (!("_id" in this)) {
-      throw new Error("_id is missing");
-    }
     if (!("vacancyId" in this)) {
       throw new Error("vacancy id is missing");
     }

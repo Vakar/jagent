@@ -5,7 +5,7 @@ import { removeJob } from "../api/jobs";
 
 const mapDispatchToProps = (dispatch) => {
   const props = {
-    deleteJobs: removeJob,
+    deleteJob: removeJob,
   };
   return bindActionCreators(props, dispatch);
 };
