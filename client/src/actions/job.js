@@ -3,15 +3,15 @@ import {
   CLEAN_FOUND_VACANCIES,
   DELETE_SAVED_VACANCY,
   REMOVE_SEARCH_PARAMS,
+  SELECT_JOB,
   SET_FOUND_VACANCIES,
-  SET_JOB_NAME,
   SET_SAVED_VACANCIES,
   SET_SEARCH_PARAMS,
 } from "./types";
 
-export const setJobName = (jobName) => ({
-  type: SET_JOB_NAME,
-  jobName,
+export const selectJob = (job) => ({
+  type: SELECT_JOB,
+  job,
 });
 
 export const setFoundVacancies = (vacancies) => ({

@@ -1,7 +1,7 @@
 /* REDUX ACTION TYPES */
 
 /* -> JOB */
-export const SET_JOB_NAME = "SET_JOB_NAME";
+export const SELECT_JOB = "SELECT_JOB";
 
 export const SET_FOUND_VACANCIES = "SET_FOUND_VACANCIES";
 export const CLEAN_FOUND_VACANCIES = "CLEAN_FOUND_VACANCIES";

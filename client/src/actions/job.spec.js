@@ -5,19 +5,20 @@ import {
   CLEAN_FOUND_VACANCIES,
   DELETE_SAVED_VACANCY,
   REMOVE_SEARCH_PARAMS,
+  SELECT_JOB,
   SET_FOUND_VACANCIES,
-  SET_JOB_NAME,
   SET_SAVED_VACANCIES,
   SET_SEARCH_PARAMS,
 } from "./types";
 
+import Job from "../models/job";
 import SearchParamsBuilder from "../models/searchParamsBuilder";
 import VacancyBuilder from "../models/vacancyBuilder";
 import chai from "chai";
 
 chai.should();
 
-const jobName = "job name";
+const job = new Job("39d295dae546b15e93293ddd", "job name");
 
 const vacancy = new VacancyBuilder()
   .with_id("5e93293ddd39d295dae546b1")
@@ -37,10 +38,10 @@ const searchParams = new SearchParamsBuilder()
   .build();
 
 describe("vacancy actions", () => {
-  it("setJobName should create SET_JOB_NAME action", () => {
-    actions.setJobName(jobName).should.to.deep.equal({
-      type: SET_JOB_NAME,
-      jobName,
+  it("selectJob should create SET_JOB_NAME action", () => {
+    actions.selectJob(job).should.to.deep.equal({
+      type: SELECT_JOB,
+      job: job,
     });
   });
 

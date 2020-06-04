@@ -3,8 +3,8 @@ import {
   CLEAN_FOUND_VACANCIES,
   DELETE_SAVED_VACANCY,
   REMOVE_SEARCH_PARAMS,
+  SELECT_JOB,
   SET_FOUND_VACANCIES,
-  SET_JOB_NAME,
   SET_SAVED_VACANCIES,
   SET_SEARCH_PARAMS,
 } from "../actions/types";
@@ -12,7 +12,7 @@ import {
 import produce from "immer";
 
 const initialState = {
-  jobName: undefined,
+  selectedJob: undefined,
   foundVacancies: [],
   savedVacancies: [],
   searchParams: undefined,
@@ -20,9 +20,9 @@ const initialState = {
 
 export default function job(baseState = initialState, action) {
   switch (action.type) {
-    case SET_JOB_NAME:
+    case SELECT_JOB:
       return produce(baseState, (draftState) => {
-        draftState.jobName = action.jobName;
+        draftState.selectedJob = action.job;
       });
     case SET_FOUND_VACANCIES:
       return produce(baseState, (draftState) => {

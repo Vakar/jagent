@@ -3,12 +3,13 @@ import {
   cleanFoundVacancies,
   deleteSavedVacancy,
   removeSearchParams,
+  selectJob,
   setFoundVacancies,
-  setJobName,
   setSavedVacancies,
   setSearchParams,
 } from "../actions";
 
+import Job from "../models/job";
 import SearchParamsBuilder from "../models/searchParamsBuilder";
 import VacancyBuilder from "../models/vacancyBuilder";
 import chai from "chai";
@@ -16,7 +17,7 @@ import job from "./job";
 
 chai.should();
 
-const jobName = "job name";
+const selectedJob = new Job("39d295dae546b15e93293ddd", "job name");
 
 const vacancy = new VacancyBuilder()
   .with_id("5e93293ddd39d295dae546b1")
@@ -39,13 +40,13 @@ let fullState;
 describe("job reducer", () => {
   beforeEach(() => {
     emptyState = {
-      jobName: undefined,
+      selectedJob: undefined,
       foundVacancies: [],
       savedVacancies: [],
       searchParams: undefined,
     };
     fullState = {
-      jobName: undefined,
+      selectedJob: undefined,
       foundVacancies: [vacancy],
       savedVacancies: [vacancy],
       searchParams: searchParams,
@@ -56,10 +57,10 @@ describe("job reducer", () => {
     job(undefined, {}).should.to.deep.equal(emptyState);
   });
 
-  it("SET_JOB_NAME | should set job name", () => {
-    const action = setJobName(jobName);
+  it("SELECT_JOB | should set job name", () => {
+    const action = selectJob(selectedJob);
     const expected = Object.assign({}, emptyState);
-    expected.jobName = jobName;
+    expected.selectedJob = selectedJob;
     job(emptyState, action).should.to.deep.equal(expected);
   });
 
