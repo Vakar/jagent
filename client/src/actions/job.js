@@ -1,6 +1,7 @@
 import {
   ADD_SAVED_VACANCY,
   CLEAN_FOUND_VACANCIES,
+  CLEAN_SAVED_VACANCIES,
   DELETE_SAVED_VACANCY,
   REMOVE_SEARCH_PARAMS,
   SELECT_JOB,
@@ -26,6 +27,10 @@ export const cleanFoundVacancies = () => ({
 export const setSavedVacancies = (vacancies) => ({
   type: SET_SAVED_VACANCIES,
   vacancies,
+});
+
+export const cleanSavedVacancies = () => ({
+  type: CLEAN_SAVED_VACANCIES,
 });
 
 export const addSavedVacancy = (vacancy) => ({

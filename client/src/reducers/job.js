@@ -1,6 +1,7 @@
 import {
   ADD_SAVED_VACANCY,
   CLEAN_FOUND_VACANCIES,
+  CLEAN_SAVED_VACANCIES,
   DELETE_SAVED_VACANCY,
   REMOVE_SEARCH_PARAMS,
   SELECT_JOB,
@@ -35,6 +36,10 @@ export default function job(baseState = initialState, action) {
     case SET_SAVED_VACANCIES:
       return produce(baseState, (draftState) => {
         draftState.savedVacancies = action.vacancies;
+      });
+    case CLEAN_SAVED_VACANCIES:
+      return produce(baseState, (draftState) => {
+        draftState.savedVacancies = [];
       });
     case ADD_SAVED_VACANCY:
       return produce(baseState, (draftState) => {

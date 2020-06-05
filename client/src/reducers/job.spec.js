@@ -1,6 +1,7 @@
 import {
   addSavedVacancy,
   cleanFoundVacancies,
+  cleanSavedVacancies,
   deleteSavedVacancy,
   removeSearchParams,
   selectJob,
@@ -83,6 +84,13 @@ describe("job reducer", () => {
     const expected = Object.assign({}, emptyState);
     expected.savedVacancies = [vacancy];
     job(emptyState, action).should.to.deep.equal(expected);
+  });
+
+  it("CLEAN_SAVED_VACANCIES | should clean saved vacancies array", () => {
+    const action = cleanSavedVacancies();
+    const expected = Object.assign({}, fullState);
+    expected.savedVacancies = [];
+    job(fullState, action).should.to.deep.equal(expected);
   });
 
   it("ADD_SAVED_VACANCY | should add saved vacancy to savedVacancies array", () => {

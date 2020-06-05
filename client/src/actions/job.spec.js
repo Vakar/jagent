@@ -3,6 +3,7 @@ import * as actions from "./job";
 import {
   ADD_SAVED_VACANCY,
   CLEAN_FOUND_VACANCIES,
+  CLEAN_SAVED_VACANCIES,
   DELETE_SAVED_VACANCY,
   REMOVE_SEARCH_PARAMS,
   SELECT_JOB,
@@ -62,6 +63,12 @@ describe("vacancy actions", () => {
     actions.setSavedVacancies(vacancies).should.to.deep.equal({
       type: SET_SAVED_VACANCIES,
       vacancies,
+    });
+  });
+
+  it("cleanSavedVacancies should create CLEAN_SAVED_VACANCIES action", () => {
+    actions.cleanSavedVacancies().should.to.deep.equal({
+      type: CLEAN_SAVED_VACANCIES,
     });
   });
 
