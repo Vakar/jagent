@@ -38,9 +38,9 @@ export const addSavedVacancy = (vacancy) => ({
   vacancy,
 });
 
-export const deleteSavedVacancy = (vacancy) => ({
+export const deleteSavedVacancy = (vacancyId) => ({
   type: DELETE_SAVED_VACANCY,
-  vacancy,
+  vacancyId,
 });
 
 export const setSearchParams = (searchParams) => ({

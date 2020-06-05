@@ -47,7 +47,7 @@ export default function job(baseState = initialState, action) {
       });
     case DELETE_SAVED_VACANCY:
       return produce(baseState, (draftState) => {
-        const id = action.vacancy._id;
+        const id = action.vacancyId;
         const predicate = (e) => e._id !== id;
         draftState.savedVacancies = draftState.savedVacancies.filter(predicate);
       });
