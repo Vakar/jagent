@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
+import FoundVacancyList from "../components/FoundVacancyList";
 import GridContainer from "../components/GridContainer";
 import JobName from "../components/JobName";
-import VacancyList from "../components/VacancyList";
 import VacancySearchForm from "../containers/VacancySearchForm";
 import { connect } from "react-redux";
 
@@ -28,7 +28,7 @@ class Job extends Component {
       <GridContainer>
         <JobName jobName={job.name} />
         <VacancySearchForm></VacancySearchForm>
-        <VacancyList vacancies={foundVacancies} />
+        <FoundVacancyList vacancies={foundVacancies} />
       </GridContainer>
     );
   }

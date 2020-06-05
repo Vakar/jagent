@@ -6,7 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
-const Vacancy = ({ vacancy }) => {
+const FoundVacancyCard = ({ vacancy }) => {
   return (
     <Card>
       <CardActionArea>
@@ -30,4 +30,4 @@ const Vacancy = ({ vacancy }) => {
   );
 };
 
-export default Vacancy;
+export default FoundVacancyCard;
