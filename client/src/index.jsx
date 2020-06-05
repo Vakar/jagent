@@ -7,6 +7,7 @@ import AddJob from "./pages/AddJob";
 import Container from "./components/Container";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Job from "./pages/Job";
 import Jobs from "./pages/Jobs";
 import { Provider } from "react-redux";
 import React from "react";
@@ -26,6 +27,7 @@ const routing = (
         <Switch>
           <Route exact path="/index.html" component={Jobs} />
           <Route exact path="/addJob" component={AddJob} />
+          <Route exact path="/job" component={Job} />
         </Switch>
         <SystemMessage />
         <Footer />

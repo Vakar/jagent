@@ -16,6 +16,7 @@ const setup = (propOverrides) => {
   const props = Object.assign(
     {
       deleteJob: jest.fn(),
+      setJob: jest.fn(),
       job: new Job("5e9ef982a325ed7eb2887c10", "someName"),
     },
     propOverrides
@@ -30,6 +31,13 @@ const setup = (propOverrides) => {
     output: output,
   };
 };
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useHistory: () => ({
+    push: jest.fn(),
+  }),
+}));
 
 describe("component JobCard", () => {
   it("should render container", () => {
@@ -83,8 +91,16 @@ describe("component JobCard", () => {
     describe("Delete Button", () => {
       it("should render", () => {
         const { output } = setup();
-        const deleteButton = output.props.children[1].props.children;
+        const [deleteButton] = output.props.children[1].props.children;
         expect(deleteButton.type).toBe(Button);
+      });
+    });
+
+    describe("Move On", () => {
+      it("should render", () => {
+        const { output } = setup();
+        const [, moveOn] = output.props.children[1].props.children;
+        expect(moveOn.type).toBe(Button);
       });
     });
   });

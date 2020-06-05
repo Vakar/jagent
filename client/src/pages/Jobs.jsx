@@ -8,7 +8,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { fetchJobs } from "../api/jobs";
 
-class App extends Component {
+class Jobs extends Component {
   componentDidMount() {
     const { fetchJobs } = this.props;
     fetchJobs();
@@ -33,7 +33,6 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    error: state.jobs.error,
     jobs: state.jobs.jobs,
   };
 };
@@ -41,4 +40,4 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ fetchJobs: fetchJobs }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Jobs);
