@@ -1,4 +1,13 @@
+import {
+  GLOBAL,
+  NOT_LETTERS_OR_SPACE,
+} from "../utils/validation/regexpPatterns";
 import React, { Component } from "react";
+import {
+  isStringContains,
+  isStringLonger,
+  isStringShorterOrEqual,
+} from "../utils/validation/stringValidators";
 
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -21,36 +30,17 @@ class AddJob extends Component {
     };
   }
 
-  static get MIN_NAME_LENGTH() {
-    return 1;
-  }
-
-  static get MAX_NAME_LENGTH() {
-    return 36;
-  }
-
-  isNameLongerThenMinNameLength(name) {
-    return name.length > AddJob.MIN_NAME_LENGTH;
-  }
-
-  isNameNotLongerThenMaxNameLength(name) {
-    return name.length <= AddJob.MAX_NAME_LENGTH;
-  }
-
-  isNameContainsOnlyLettersOrSpace(name) {
-    const notLetterOrSpace = /[^a-zA-Z|\s]/g;
-    return !notLetterOrSpace.test(name);
-  }
-
   validateName(name) {
+    const MIN_LENGTH = 1;
+    const MAX_LENGTH = 36;
     let validationState = { error: true };
     let helperText = "";
-    if (!this.isNameContainsOnlyLettersOrSpace(name)) {
+    if (isStringContains(name, NOT_LETTERS_OR_SPACE, GLOBAL)) {
       helperText = "Should contains only letters.";
-    } else if (!this.isNameLongerThenMinNameLength(name)) {
-      helperText = `Should be longer then ${AddJob.MIN_NAME_LENGTH} characters.`;
-    } else if (!this.isNameNotLongerThenMaxNameLength(name)) {
-      helperText = `Shouldn't be longer then ${AddJob.MAX_NAME_LENGTH} characters. `;
+    } else if (isStringShorterOrEqual(name, MIN_LENGTH)) {
+      helperText = `Should be longer then ${MIN_LENGTH} characters.`;
+    } else if (isStringLonger(name, MAX_LENGTH)) {
+      helperText = `Shouldn't be longer then ${MAX_LENGTH} characters. `;
     } else {
       validationState = { error: false };
     }
