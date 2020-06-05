@@ -1,4 +1,4 @@
-import FoundVacancyCard from "./FoundVacancyCard";
+import FoundVacancyCard from "../containers/FoundVacancyCard";
 import Grid from "@material-ui/core/Grid";
 import React from "react";
 

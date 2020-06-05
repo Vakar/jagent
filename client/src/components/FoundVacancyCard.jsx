@@ -6,7 +6,10 @@ import CardContent from "@material-ui/core/CardContent";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
-const FoundVacancyCard = ({ vacancy }) => {
+const FoundVacancyCard = ({ jobId, vacancy, saveVacancy }) => {
+  const handleSave = (vacancy) => {
+    saveVacancy(jobId, vacancy);
+  };
   return (
     <Card>
       <CardActionArea>
@@ -23,7 +26,7 @@ const FoundVacancyCard = ({ vacancy }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button>Save</Button>
+        <Button onClick={() => handleSave(vacancy)}>Save</Button>
         <Button>Go to origin</Button>
       </CardActions>
     </Card>
