@@ -6,6 +6,9 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     minHeight: "100vh",
+    maxWidth: "1024px",
+    margin: "auto",
+    backgroundColor: "white",
   },
 }));
 
