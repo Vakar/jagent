@@ -6,9 +6,10 @@ import {
 import { fetchWithAction, fetchWithActionFn } from "./core/commonFetch";
 
 import API from "./apiRouts";
+import VacancyBuilder from "../models/vacancyBuilder";
 
 const mapper = (obj) => {
-  new VacancyBuilder()
+  return new VacancyBuilder()
     .with_id(obj._id)
     .withVacancyId(obj.vacancyId)
     .withName(obj.name)
