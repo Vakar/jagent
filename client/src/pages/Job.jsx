@@ -3,8 +3,11 @@ import React, { Component } from "react";
 import FoundVacancyList from "../components/FoundVacancyList";
 import GridContainer from "../components/GridContainer";
 import JobName from "../components/JobName";
+import SavedVacancyList from "../components/SavedVacancyList";
 import VacancySearchForm from "../containers/VacancySearchForm";
+import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { fetchVacancies } from "../api/vacancies";
 
 class Job extends Component {
   constructor(props) {
@@ -19,14 +22,16 @@ class Job extends Component {
   }
 
   componentDidMount() {
-    // todo: fetch data from saved vacancies api
+    const { fetchVacancies, job } = this.props;
+    fetchVacancies(job.id);
   }
 
   render() {
-    const { foundVacancies, job } = this.props;
+    const { savedVacancies, foundVacancies, job } = this.props;
     return (
       <GridContainer>
         <JobName jobName={job.name} />
+        <SavedVacancyList vacancies={savedVacancies} />
         <VacancySearchForm></VacancySearchForm>
         <FoundVacancyList vacancies={foundVacancies} />
       </GridContainer>
@@ -42,4 +47,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(Job);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ fetchVacancies: fetchVacancies }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Job);

@@ -6,20 +6,9 @@ import CardContent from "@material-ui/core/CardContent";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
-const isVacancyNotSaved = (savedVacancies, vacancy) => {
-  const vacancyId = vacancy.vacancyId;
-  const arr = savedVacancies.filter(
-    (v) => v.vacancyId === vacancyId.toString()
-  );
-  return arr.length === 0;
-};
-
-const FoundVacancyCard = ({ jobId, vacancy, saveVacancy, savedVacancies }) => {
-  const handleSave = (vacancy) => {
-    const isNotSaved = isVacancyNotSaved(savedVacancies, vacancy);
-    if (isNotSaved) {
-      saveVacancy(jobId, vacancy);
-    }
+const SavedVacancyCard = ({ vacancy, removeVacancy, jobId }) => {
+  const handleDelete = () => {
+    removeVacancy(jobId, vacancy._id);
   };
   return (
     <Card>
@@ -37,11 +26,11 @@ const FoundVacancyCard = ({ jobId, vacancy, saveVacancy, savedVacancies }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button onClick={() => handleSave(vacancy)}>Save</Button>
-        <Button>Go to origin</Button>
+        <Button onClick={() => handleDelete()}>Delete</Button>
+        <Button>Go to the vacancy page</Button>
       </CardActions>
     </Card>
   );
 };
 
-export default FoundVacancyCard;
+export default SavedVacancyCard;
