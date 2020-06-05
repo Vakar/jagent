@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import GridContainer from "../components/GridContainer";
 import JobName from "../components/JobName";
 import VacancyList from "../components/VacancyList";
-import VacancySearchForm from "../components/VacancySearchForm";
+import VacancySearchForm from "../containers/VacancySearchForm";
 import { connect } from "react-redux";
 
 class Job extends Component {

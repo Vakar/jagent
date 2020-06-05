@@ -12,11 +12,8 @@ import {
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { fetchVacancies } from "../api/rabotaUa";
 
-class VacancySearchForm extends Component {
+export default class VacancySearchForm extends Component {
   constructor(props) {
     super(props);
     this.handleKeyWords = this.handleKeyWords.bind(this);
@@ -99,8 +96,3 @@ class VacancySearchForm extends Component {
     );
   }
 }
-
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ searchVacancies: fetchVacancies }, dispatch);
-
-export default connect(null, mapDispatchToProps)(VacancySearchForm);
