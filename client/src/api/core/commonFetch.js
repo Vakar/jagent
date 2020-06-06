@@ -45,8 +45,8 @@ export const fetchWithActionFn = (request, actionFn, mapper) => {
   return (dispatch) => {
     fetch(request)
       .then((res) => res.json())
-      .then((json) => {
-        const payload = Array.isArray(json) ? json.map(mapper) : mapper(json);
+      .then((body) => {
+        const payload = Array.isArray(body) ? body.map(mapper) : mapper(body);
         dispatch(actionFn(payload));
       })
       .catch(() => {
