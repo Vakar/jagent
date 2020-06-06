@@ -1,6 +1,7 @@
 import FoundVacancyCard from "../components/FoundVacancyCard";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { openVacancyPage } from "../api/rabotaUa";
 import { saveVacancy } from "../api/vacancies";
 
 const mapStateToProps = (state) => {
@@ -11,7 +12,11 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ saveVacancy: saveVacancy }, dispatch);
+  const props = {
+    saveVacancy: saveVacancy,
+    openVacancyPage: openVacancyPage,
+  };
+  return bindActionCreators(props, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FoundVacancyCard);

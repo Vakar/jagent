@@ -14,7 +14,13 @@ const isVacancyNotSaved = (savedVacancies, vacancy) => {
   return arr.length === 0;
 };
 
-const FoundVacancyCard = ({ jobId, vacancy, saveVacancy, savedVacancies }) => {
+const FoundVacancyCard = ({
+  jobId,
+  vacancy,
+  saveVacancy,
+  savedVacancies,
+  openVacancyPage,
+}) => {
   const handleSave = (vacancy) => {
     const isNotSaved = isVacancyNotSaved(savedVacancies, vacancy);
     if (isNotSaved) {
@@ -38,7 +44,9 @@ const FoundVacancyCard = ({ jobId, vacancy, saveVacancy, savedVacancies }) => {
       </CardActionArea>
       <CardActions>
         <Button onClick={() => handleSave(vacancy)}>Save</Button>
-        <Button>Go to origin</Button>
+        <Button onClick={() => openVacancyPage(vacancy.vacancyId)}>
+          Go to origin
+        </Button>
       </CardActions>
     </Card>
   );

@@ -6,7 +6,12 @@ import CardContent from "@material-ui/core/CardContent";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
-const SavedVacancyCard = ({ vacancy, removeVacancy, jobId }) => {
+const SavedVacancyCard = ({
+  jobId,
+  vacancy,
+  removeVacancy,
+  openVacancyPage,
+}) => {
   const handleDelete = () => {
     removeVacancy(jobId, vacancy._id);
   };
@@ -27,7 +32,9 @@ const SavedVacancyCard = ({ vacancy, removeVacancy, jobId }) => {
       </CardActionArea>
       <CardActions>
         <Button onClick={() => handleDelete()}>Delete</Button>
-        <Button>Go to the vacancy page</Button>
+        <Button onClick={() => openVacancyPage(vacancy.vacancyId)}>
+          Go to origin
+        </Button>
       </CardActions>
     </Card>
   );
