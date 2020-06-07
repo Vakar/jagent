@@ -1,4 +1,5 @@
 import Alert from "./Alert";
+import AlertModel from "../models/alert";
 import { ERROR } from "../models/alertTypes";
 import React from "react";
 import Snackbar from "@material-ui/core/Snackbar";
@@ -9,7 +10,7 @@ const setup = (propOverrides) => {
   const props = Object.assign(
     {
       removeAlert: jest.fn(),
-      alert: new Alert("error message", ERROR),
+      alert: new AlertModel("error message", ERROR),
     },
     propOverrides
   );

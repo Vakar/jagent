@@ -100,8 +100,9 @@ describe("job reducer", () => {
     job(emptyState, action).should.to.deep.equal(expected);
   });
 
-  it("DELETE_SAVED_VACANCY | should delete removed vacancy from saved vacancies array", () => {
-    const action = deleteSavedVacancy(vacancy);
+  it("DELETE_SAVED_VACANCY | should delete saved vacancy from saved vacancies array", () => {
+    const vacancyId = vacancy._id;
+    const action = deleteSavedVacancy(vacancyId);
     const expected = Object.assign({}, fullState);
     expected.savedVacancies = [];
     job(fullState, action).should.to.deep.equal(expected);

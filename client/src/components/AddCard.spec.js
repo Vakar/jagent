@@ -16,6 +16,12 @@ const setup = () => {
   return renderer.getRenderOutput();
 };
 
+jest.mock("react-router-dom", () => ({
+  useHistory: () => ({
+    push: jest.fn(),
+  }),
+}));
+
 describe("container AddCard", () => {
   it("should render container", () => {
     const output = setup();
@@ -39,7 +45,7 @@ describe("container AddCard", () => {
       it("href should be: /addJob", () => {
         const output = setup();
         const link = output.props.children.props.children;
-        expect(link.props.href).toBe("/addJob");
+        expect(link.props.href).toBe("#");
       });
 
       describe("CardContent", () => {

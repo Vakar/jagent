@@ -79,10 +79,11 @@ describe("vacancy actions", () => {
     });
   });
 
-  it("deleteRemovedVacancy should create DELETE_SAVED_VACANCY action", () => {
-    actions.deleteSavedVacancy(vacancy).should.to.deep.equal({
+  it("deleteSavedVacancy should create DELETE_SAVED_VACANCY action", () => {
+    const vacancyId = vacancy.vacancyId;
+    actions.deleteSavedVacancy(vacancyId).should.to.deep.equal({
       type: DELETE_SAVED_VACANCY,
-      vacancy,
+      vacancyId,
     });
   });
 
