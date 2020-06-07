@@ -3,8 +3,10 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
+import PropTypes from "prop-types";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
+import Vacancy from "../models/vacancy";
 
 const SavedVacancyCard = ({
   jobId,
@@ -38,6 +40,13 @@ const SavedVacancyCard = ({
       </CardActions>
     </Card>
   );
+};
+
+SavedVacancyCard.propTypes = {
+  jobId: PropTypes.string.isRequired,
+  vacancy: PropTypes.instanceOf(Vacancy).isRequired,
+  removeVacancy: PropTypes.func.isRequired,
+  openVacancyPage: PropTypes.func.isRequired,
 };
 
 export default SavedVacancyCard;

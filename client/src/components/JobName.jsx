@@ -1,4 +1,5 @@
 import Grid from "@material-ui/core/Grid";
+import PropTypes from "prop-types";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
@@ -12,6 +13,10 @@ const JobName = ({ jobName }) => {
       </Grid>
     </Grid>
   );
+};
+
+JobName.propTypes = {
+  jobName: PropTypes.string.isRequired,
 };
 
 export default JobName;

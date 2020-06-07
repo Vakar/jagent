@@ -3,6 +3,7 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
+import PropTypes from "prop-types";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
@@ -50,6 +51,17 @@ const FoundVacancyCard = ({
       </CardActions>
     </Card>
   );
+};
+
+FoundVacancyCard.propTypes = {
+  jobId: PropTypes.string.isRequired,
+  vacancy: PropTypes.shape({
+    color: PropTypes.string,
+    fontSize: PropTypes.number,
+  }),
+  saveVacancy: PropTypes.func.isRequired,
+  savedVacancies: PropTypes.arrayOf(Object).isRequired,
+  openVacancyPage: PropTypes.func.isRequired,
 };
 
 export default FoundVacancyCard;

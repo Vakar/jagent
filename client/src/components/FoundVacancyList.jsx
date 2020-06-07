@@ -1,5 +1,6 @@
 import FoundVacancyCard from "../containers/FoundVacancyCard";
 import Grid from "@material-ui/core/Grid";
+import PropTypes from "prop-types";
 import React from "react";
 
 const FoundVacancyList = ({ vacancies }) => {
@@ -12,6 +13,10 @@ const FoundVacancyList = ({ vacancies }) => {
       ))}
     </Grid>
   );
+};
+
+FoundVacancyList.propTypes = {
+  vacancies: PropTypes.arrayOf(Object).isRequired,
 };
 
 export default FoundVacancyList;

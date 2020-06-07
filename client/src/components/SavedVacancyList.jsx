@@ -1,4 +1,5 @@
 import Grid from "@material-ui/core/Grid";
+import PropTypes from "prop-types";
 import React from "react";
 import SavedVacancyCard from "../containers/SavedVacancyCard";
 
@@ -12,6 +13,10 @@ const SavedVacancyList = ({ vacancies }) => {
       ))}
     </Grid>
   );
+};
+
+SavedVacancyList.propTypes = {
+  vacancies: PropTypes.arrayOf(Object).isRequired,
 };
 
 export default SavedVacancyList;
