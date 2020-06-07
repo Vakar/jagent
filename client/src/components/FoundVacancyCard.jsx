@@ -55,10 +55,7 @@ const FoundVacancyCard = ({
 
 FoundVacancyCard.propTypes = {
   jobId: PropTypes.string.isRequired,
-  vacancy: PropTypes.shape({
-    color: PropTypes.string,
-    fontSize: PropTypes.number,
-  }),
+  vacancy: PropTypes.instanceOf(Object).isRequired,
   saveVacancy: PropTypes.func.isRequired,
   savedVacancies: PropTypes.arrayOf(Object).isRequired,
   openVacancyPage: PropTypes.func.isRequired,
