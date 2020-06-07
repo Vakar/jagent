@@ -1,6 +1,6 @@
 export default class Job {
-  constructor(id, name) {
-    this.id = id;
+  constructor(_id, name) {
+    this._id = _id;
     this.name = name;
   }
 }

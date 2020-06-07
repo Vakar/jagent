@@ -19,7 +19,7 @@ class Jobs extends Component {
     return (
       <GridContainer>
         {jobs.map((job) => (
-          <Grid key={job.id} item>
+          <Grid key={job._id} item>
             <JobCard job={job} />
           </Grid>
         ))}

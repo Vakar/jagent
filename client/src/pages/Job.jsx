@@ -23,7 +23,7 @@ class Job extends Component {
 
   componentDidMount() {
     const { fetchVacancies, job } = this.props;
-    fetchVacancies(job.id);
+    fetchVacancies(job._id);
   }
 
   render() {

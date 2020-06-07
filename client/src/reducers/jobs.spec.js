@@ -39,21 +39,21 @@ describe("jobs reducer", () => {
   });
 
   it("DELETE_JOB | should delete job from jobs array", () => {
-    const deleteAction = deleteJob(defaultJob.id);
+    const deleteAction = deleteJob(defaultJob._id);
     jobs(fullState, deleteAction).should.to.deep.include({
       jobs: [newJob],
     });
   });
 
   it("DELETE_JOB | should delete job from selected if it selected", () => {
-    const deleteAction = deleteJob(defaultJob.id);
+    const deleteAction = deleteJob(defaultJob._id);
     jobs(fullState, deleteAction).should.to.deep.include({
       selectedJob: undefined,
     });
   });
 
   it("DELETE_JOB | shouldn't delete job from selected if it's not selected", () => {
-    const deleteAction = deleteJob(defaultJob.id);
+    const deleteAction = deleteJob(defaultJob._id);
     fullState.selectedJob = newJob;
     jobs(fullState, deleteAction).should.to.deep.include({
       selectedJob: newJob,
@@ -61,7 +61,7 @@ describe("jobs reducer", () => {
   });
 
   it("EDIT_JOB | should update job in array", () => {
-    const updatedJob = new Job(defaultJob.id, "new_job_name");
+    const updatedJob = new Job(defaultJob._id, "new_job_name");
     const editAction = editJob(updatedJob);
     jobs(fullState, editAction).should.to.deep.include({
       jobs: [updatedJob, newJob],
@@ -69,7 +69,7 @@ describe("jobs reducer", () => {
   });
 
   it("EDIT_JOB | shouldn't update selected job if it's not selected", () => {
-    const updatedJob = new Job(newJob.id, "new_job_name");
+    const updatedJob = new Job(newJob._id, "new_job_name");
     const editAction = editJob(updatedJob);
     jobs(fullState, editAction).should.to.deep.include({
       selectedJob: defaultJob,
@@ -77,7 +77,7 @@ describe("jobs reducer", () => {
   });
 
   it("EDIT_JOB | should update selected job if it's selected", () => {
-    const updatedJob = new Job(defaultJob.id, "new_job_name");
+    const updatedJob = new Job(defaultJob._id, "new_job_name");
     const editAction = editJob(updatedJob);
     jobs(fullState, editAction).should.to.deep.include({
       selectedJob: updatedJob,

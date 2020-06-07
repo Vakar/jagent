@@ -17,20 +17,20 @@ export default function jobs(baseState = initialState, action) {
       return produce(baseState, (draftState) => {
         if (draftState.selectedJob) {
           draftState.selectedJob =
-            draftState.selectedJob.id === action.id
+            draftState.selectedJob._id === action.id
               ? undefined
               : draftState.selectedJob;
         }
-        draftState.jobs = draftState.jobs.filter((e) => e.id !== action.id);
+        draftState.jobs = draftState.jobs.filter((e) => e._id !== action.id);
       });
     case EDIT_JOB:
       return produce(baseState, (draftState) => {
         draftState.selectedJob =
-          draftState.selectedJob.id === action.job.id
+          draftState.selectedJob._id === action.job._id
             ? action.job
             : draftState.selectedJob;
         draftState.jobs = draftState.jobs.map((e) =>
-          e.id === action.job.id ? action.job : e
+          e._id === action.job._id ? action.job : e
         );
       });
     case GET_JOBS:

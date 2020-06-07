@@ -42,7 +42,7 @@ const JobCard = ({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button onClick={() => deleteJob(job.id)} startIcon={<DeleteIcon />}>
+        <Button onClick={() => deleteJob(job._id)} startIcon={<DeleteIcon />}>
           Delete
         </Button>
         <Button onClick={() => moveOn(job)} startIcon={<ForwardIcon />}>

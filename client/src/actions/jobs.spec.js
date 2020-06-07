@@ -20,9 +20,9 @@ describe("job actions", () => {
   });
 
   it("deleteJob should create DELETE_JOB action", () => {
-    actions.deleteJob(job.id).should.to.deep.equal({
+    actions.deleteJob(job._id).should.to.deep.equal({
       type: DELETE_JOB,
-      id: job.id,
+      id: job._id,
     });
   });
 
