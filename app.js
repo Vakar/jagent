@@ -24,7 +24,7 @@ const loginController = require("./controllers/loginController");
 
 const LocalStrategy = require("passport-local").Strategy;
 
-const MONGODB_URL = "mongodb://127.0.0.1/test";
+const MONGODB_URL = "mongodb://127.0.0.1/job_hunter";
 
 /* VIEW ENGINE */
 app.set("views", path.join(__dirname, "views"));
