@@ -13,6 +13,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
 
 export default class VacancySearchForm extends Component {
   constructor(props) {
@@ -69,30 +70,44 @@ export default class VacancySearchForm extends Component {
 
   render() {
     return (
-      <Grid container spacing={1} alignItems="center" justify="space-evenly">
-        <Grid item xs={1}></Grid>
-        <Grid item xs={8}>
-          <TextField
-            required
-            id="keyWords"
-            name="keyWords"
-            label="Key words"
-            onInput={this.handleKeyWords}
-            value={this.state.keyWords}
-            variant="outlined"
-            helperText={this.state.keyWordsHelperText}
-            fullWidth
-            InputProps={this.state.keyWordsInputValidationState}
-            FormHelperTextProps={this.state.keyWordsInputValidationState}
-            size="small"
-          />
+      <Grid container item xs={12} spacing={1}>
+        <Grid item xs={12}>
+          <Typography variant="h6" component="h2" align="left">
+            Search form:
+          </Typography>
         </Grid>
-        <Grid item xs={2}>
-          <Button variant="outlined" onClick={() => this.handleSearch()}>
-            Search
-          </Button>
+        <Grid
+          container
+          item
+          xs={12}
+          spacing={1}
+          alignItems="center"
+          justify="space-evenly"
+        >
+          <Grid item xs={1}></Grid>
+          <Grid item xs={8}>
+            <TextField
+              required
+              id="keyWords"
+              name="keyWords"
+              label="Key words"
+              onInput={this.handleKeyWords}
+              value={this.state.keyWords}
+              variant="outlined"
+              helperText={this.state.keyWordsHelperText}
+              fullWidth
+              InputProps={this.state.keyWordsInputValidationState}
+              FormHelperTextProps={this.state.keyWordsInputValidationState}
+              size="small"
+            />
+          </Grid>
+          <Grid item xs={2}>
+            <Button variant="outlined" onClick={() => this.handleSearch()}>
+              Search
+            </Button>
+          </Grid>
+          <Grid item xs={1}></Grid>
         </Grid>
-        <Grid item xs={1}></Grid>
       </Grid>
     );
   }
