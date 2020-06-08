@@ -21,21 +21,28 @@ class Job extends Component {
     };
   }
 
-  componentDidMount() {
-    const { fetchVacancies, job } = this.props;
-    fetchVacancies(job._id);
-  }
-
   render() {
-    const { savedVacancies, foundVacancies, job } = this.props;
-    return (
-      <GridContainer>
-        <JobName jobName={job.name} />
-        <SavedVacancyList vacancies={savedVacancies} />
-        <VacancySearchForm></VacancySearchForm>
-        <FoundVacancyList vacancies={foundVacancies} />
-      </GridContainer>
-    );
+    const {
+      savedVacancies,
+      fetchVacancies,
+      foundVacancies,
+      job,
+      history,
+    } = this.props;
+    if (job) {
+      fetchVacancies(job._id);
+      return (
+        <GridContainer>
+          <JobName jobName={job.name} />
+          <SavedVacancyList vacancies={savedVacancies} />
+          <VacancySearchForm></VacancySearchForm>
+          <FoundVacancyList vacancies={foundVacancies} />
+        </GridContainer>
+      );
+    } else {
+      history.push("/index.html");
+      return null;
+    }
   }
 }
 
