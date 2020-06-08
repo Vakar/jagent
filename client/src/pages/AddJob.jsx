@@ -13,6 +13,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import GridContainer from "../components/GridContainer";
 import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { saveJob } from "../api/jobs";
@@ -68,38 +69,47 @@ class AddJob extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <GridContainer>
-          <Grid item lg={4} md={4} sm={2}></Grid>
-          <Grid item lg={4} md={4} sm={8}>
-            <TextField
-              required
-              id="name"
-              name="name"
-              label="Job name"
-              onInput={this.handleName}
-              value={this.state.name}
-              variant="outlined"
-              helperText={this.state.nameHelperText}
-              fullWidth
-              InputProps={this.state.nameInputValidationState}
-              FormHelperTextProps={this.state.nameInputValidationState}
-            />
+      <GridContainer>
+        <Grid container item xs={12} spacing={3}>
+          <Grid item xs={12}>
+            <Typography variant="h6" component="h2" align="center">
+              Add new job:
+            </Typography>
           </Grid>
-          <Grid item lg={4} md={4} sm={2}></Grid>
-          <Grid item lg={4} md={4} sm={2}></Grid>
-          <Grid item lg={4} md={4} sm={8}>
-            <Button
-              variant="contained"
-              color="default"
-              onClick={() => this.handleSubmit()}
-            >
-              Save
-            </Button>
+          <Grid
+            container
+            item
+            xs={12}
+            spacing={1}
+            alignItems="center"
+            justify="space-evenly"
+          >
+            <Grid item xs={1}></Grid>
+            <Grid item xs={8}>
+              <TextField
+                required
+                id="name"
+                name="name"
+                label="Job name"
+                onInput={this.handleName}
+                value={this.state.name}
+                variant="outlined"
+                size="small"
+                helperText={this.state.nameHelperText}
+                fullWidth
+                InputProps={this.state.nameInputValidationState}
+                FormHelperTextProps={this.state.nameInputValidationState}
+              />
+            </Grid>
+            <Grid item xs={2}>
+              <Button variant="outlined" onClick={() => this.handleSubmit()}>
+                Save
+              </Button>
+            </Grid>
+            <Grid item xs={1}></Grid>
           </Grid>
-          <Grid item lg={4} md={4} sm={2}></Grid>
-        </GridContainer>
-      </React.Fragment>
+        </Grid>
+      </GridContainer>
     );
   }
 }
