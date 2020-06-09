@@ -21,16 +21,16 @@ class Job extends Component {
     };
   }
 
-  render() {
-    const {
-      savedVacancies,
-      fetchVacancies,
-      foundVacancies,
-      job,
-      history,
-    } = this.props;
+  componentDidMount() {
+    const { fetchVacancies, job } = this.props;
     if (job) {
       fetchVacancies(job._id);
+    }
+  }
+
+  render() {
+    const { savedVacancies, foundVacancies, job, history } = this.props;
+    if (job) {
       return (
         <GridContainer>
           <JobName jobName={job.name} />
