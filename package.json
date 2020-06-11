@@ -9,7 +9,8 @@
     "start": "node ./bin/www",
     "debug-start": "DEBUG=hr:* npm start",
     "lint": "eslint '**/*.js'",
-    "test": "mocha tests/**/*.test.js"
+    "test": "mocha tests/**/*.test.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {
     "bcrypt": "^4.0.1",
