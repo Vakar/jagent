@@ -2,6 +2,7 @@ export default class Api {
   static #API = "/api/rest";
   static #JOBS = "jobs";
   static #VACANCIES = "vacancies";
+  static #RABOTA_UA = "foreign/rabotaUa";
 
   /* API ROUTS */
 
@@ -21,5 +22,15 @@ export default class Api {
 
   static vacanciesWithId(jobId, vacancyId) {
     return `${this.jobsWithId(jobId)}/${this.#VACANCIES}/${vacancyId}`;
+  }
+
+  /* RABOTA UA */
+
+  static rabotaUaSearch() {
+    return `${this.#API}/${this.#RABOTA_UA}/search`;
+  }
+
+  static rabotaUaPageUrl() {
+    return `${this.#API}/${this.#RABOTA_UA}/vacancyPageUrl`;
   }
 }

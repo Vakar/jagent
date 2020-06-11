@@ -2,7 +2,7 @@ import { fetchVacancies } from "./rabotaUa";
 import { getUrlWithParams } from "./utils/urlUtils";
 
 /* URL */
-const VACANCY_SEARCH_URL = "https://api.rabota.ua/vacancy/search";
+const VACANCY_SEARCH_URL = "/api/rest/foreign/rabotaUa/search";
 
 /* Request info objects */
 const searchParams = {

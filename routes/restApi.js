@@ -5,10 +5,11 @@ const jobController = require("../controllers/jobController");
 const userController = require("../controllers/userController");
 const vacancyController = require("../controllers/vacancyController");
 const searchParamsController = require("../controllers/searchParamsController");
+const rabotaUaController = require("../controllers/rabotaUaController");
 
 const jsonParser = bodyParser.json();
 
-/* REST API */
+/* LOCAL REST API */
 
 /* -> JOBS */
 router.get("/jobs", jobController.get);
@@ -33,5 +34,14 @@ router.post(
   searchParamsController.save
 );
 router.delete("/jobs/:jobId/searchParams", searchParamsController.remove);
+
+/* FOREIGN REST API */
+
+/* -> RABOTA UA */
+router.get("/foreign/rabotaUa/search", rabotaUaController.search);
+router.get(
+  "/foreign/rabotaUa/vacancyPageUrl",
+  rabotaUaController.vacancyPageUrl
+);
 
 module.exports = router;
