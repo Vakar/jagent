@@ -24,8 +24,6 @@ const loginController = require("./controllers/loginController");
 
 const LocalStrategy = require("passport-local").Strategy;
 
-const MONGODB_URL = "mongodb://127.0.0.1/job_hunter";
-
 /* VIEW ENGINE */
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
@@ -43,6 +41,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static("public"));
 
 /* MONGOOSE */
+const MONGODB_URL = process.env.MONGO_URI;
 mongoose.connect(MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
