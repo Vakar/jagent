@@ -7,16 +7,14 @@ import VacancyBuilder from "../models/vacancyBuilder";
 import { fetchWithActionFn } from "./core/commonFetch";
 import { getUrlWithParams } from "./utils/urlUtils";
 
-const mapper = (vacancies) => {
-  return vacancies.map((v) => {
-    return new VacancyBuilder()
-      .withVacancyId(v.id)
-      .withName(v.name)
-      .withDate(new Date(v.date))
-      .withCompanyName(v.companyName)
-      .withShortDescription(v.shortDescription)
-      .build();
-  });
+const mapper = (vacancy) => {
+  return new VacancyBuilder()
+    .withVacancyId(vacancy.id)
+    .withName(vacancy.name)
+    .withDate(new Date(vacancy.date))
+    .withCompanyName(vacancy.companyName)
+    .withShortDescription(vacancy.shortDescription)
+    .build();
 };
 
 export const fetchVacancies = (searchParams) => {
