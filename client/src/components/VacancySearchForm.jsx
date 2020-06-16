@@ -10,8 +10,11 @@ import {
 } from "../utils/validation/stringValidators";
 
 import Button from "@material-ui/core/Button";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 
@@ -25,6 +28,8 @@ export default class VacancySearchForm extends Component {
         error: false,
       },
       keyWordsHelperText: "",
+      selectedSite: "rabotaUa",
+      selectedCity: "Kharkiv",
     };
   }
 
@@ -69,13 +74,50 @@ export default class VacancySearchForm extends Component {
   }
 
   render() {
+    const { selectedSite, selectedCity } = this.state;
     return (
       <Grid container item xs={12} spacing={1}>
+        {/* FORM HEADER */}
         <Grid item xs={12}>
           <Typography variant="h6" component="h2" align="left">
             Search form:
           </Typography>
         </Grid>
+        {/* SEARCH PROPERTIES */}
+        <Grid item xs={12}>
+          <RadioGroup
+            row
+            aria-label="position"
+            name="position"
+            defaultValue="top"
+          >
+            <FormControlLabel
+              value="start"
+              control={
+                <Radio
+                  disabled
+                  checked={selectedSite === "rabotaUa"}
+                  value="rabotaUa"
+                  name="site"
+                />
+              }
+              label="rabota.ua"
+            />
+            <FormControlLabel
+              value="start"
+              control={
+                <Radio
+                  disabled
+                  checked={selectedCity === "Kharkiv"}
+                  value="Kharkiv"
+                  name="city"
+                />
+              }
+              label="Kharkiv"
+            />
+          </RadioGroup>
+        </Grid>
+        {/* KEYWORDS AND SUBMIT BUTTON */}
         <Grid
           container
           item
