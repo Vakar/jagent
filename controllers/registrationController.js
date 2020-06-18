@@ -17,8 +17,8 @@ exports.validateRegistration = () => {
       .isLength({ min: MIN_LENGTH, max: MAX_LENGTH })
       .trim()
       .withMessage(
-        `Username length should be from ${MIN_LENGTH} 
-        to ${MAX_LENGTH} characters.`
+        `Username length should be between ${MIN_LENGTH} 
+        and ${MAX_LENGTH}.`
       )
       .isAlphanumeric()
       .withMessage("Username has non-alphanumeric characters.")
@@ -33,8 +33,8 @@ exports.validateRegistration = () => {
       .isLength({ min: MIN_LENGTH, max: MAX_LENGTH })
       .trim()
       .withMessage(
-        `Password length should be from ${MIN_LENGTH} 
-        to ${MAX_LENGTH} characters.`
+        `Password length should be between ${MIN_LENGTH} 
+        and ${MAX_LENGTH}.`
       )
       .custom((value, { req }) => {
         if (value !== req.body.confirmPassword) {

@@ -3,30 +3,26 @@ extends layout
 block content
 
   .container
-  .row
-    .col-sm-9.col-md-6.col-lg-3.mx-auto
-      .card.card-signin.my-5
-        .card-body
-          h5.card-title.text-center Sign Up
           form.form-signin(method='POST' action='/register')
-            .form-label-group
-              label(for='inputUsername') Username
-              input#inputUsername.form-control(type='text' name="username" placeholder='Username' required='true' autofocus='' value= username ? username : '')
+            h5.card-title.text-center Sign Up
+            .form-group
+              label.bmd-label-floating(for='inputUsername') Username
+              input#inputUsername.form-control(type='text' name="username" required='true' autofocus='' value= username ? username : '')
             br
-            .form-label-group
-              label(for='inputPassword') Password
-              input#inputPassword.form-control(type='password' name="password" placeholder='Password' required='true')
+            .form-group
+              label.bmd-label-floating(for='inputPassword') Password
+              input#inputPassword.form-control(type='password' name="password" required='true')
             br
-            .form-label-group
-              label(for='confirmPassword') Confirm Password
-              input#confirmPassword.form-control(type='password' name="confirmPassword" placeholder='Confirm Password' required='true')
+            .form-group
+              label.bmd-label-floating(for='confirmPassword') Confirm Password
+              input#confirmPassword.form-control(type='password' name="confirmPassword" required='true')
             br
-            button.btn.btn-lg.btn-primary.btn-block.text-uppercase(type='submit') Sign Up
+            button.btn.btn-outline-dark.btn-block.text-uppercase(type='submit') Sign Up
             br
-            a.float-right(href='/login') Login
+            a.float-right.badge.badge-dark(href='/login') Login
             hr.my-4
             .error #{message}
             if errors       
-                ul
+                ul.list-group
                     each val, index in errors
-                        li.text-danger= val.msg
+                        li.list-group-item.list-group-item-danger.text-sm-left.small= val.msg

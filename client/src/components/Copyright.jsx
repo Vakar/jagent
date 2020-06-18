@@ -5,12 +5,12 @@ import Typography from "@material-ui/core/Typography";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://vakar.space">
-        Leonid Vakar
-      </Link>{" "}
+      {"© "}
       {new Date().getFullYear()}
-      {"."}
+      {" Copyright: "}
+      <Link color="inherit" href="https://vakar.space">
+        vakar.space
+      </Link>
     </Typography>
   );
 }

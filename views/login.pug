@@ -2,27 +2,23 @@ extends layout
 
 block content
 
-  .container
-  .row
-    .col-sm-9.col-md-6.col-lg-3.mx-auto
-      .card.card-signin.my-5
-        .card-body
-          h5.card-title.text-center Sign In
+  .container    
           form.form-signin(method='POST' action='/login')
-            .form-label-group
-              label(for='inputUsername') Username
-              input#inputUsername.form-control(type='text' name="username" placeholder='Please input username' required='true' autofocus='')
+            h5.card-title.text-center Sign In
+            .form-group
+              label.bmd-label-floating(for='inputUsername') Username
+              input#inputUsername.form-control(type='text' name="username" required='true' autofocus='')
             br
-            .form-label-group
-              label(for='inputPassword') Password
-              input#inputPassword.form-control(type='password' name="password" placeholder='Please input password' required='true')
+            .form-group
+              label.bmd-label-floating(for='inputPassword') Password
+              input#inputPassword.form-control(type='password' name="password" required='true')
             br
-            button.btn.btn-lg.btn-primary.btn-block.text-uppercase(type='submit') Sign in
+            button.btn.btn-outline-dark.btn-block.text-uppercase(type='submit') Sign in
             br
-            a.float-right(href='/registration') Registration
+            a.float-right.badge.badge-dark(href='/registration') Registration
             hr.my-4
             p.text-danger.text-center #{message}
             if errors       
-                ul
+                ul.list-group
                     each val, index in errors
-                        li.text-danger= val.msg
+                        li.list-group-item.list-group-item-danger.text-sm-left.small= val.msg
