@@ -35,7 +35,7 @@ function Header() {
           noWrap
           className={classes.toolbarTitle}
         >
-          Job Hunter
+          Job Agent
         </Typography>
         <Button href="/logout" variant="outlined" color="default">
           Logout
