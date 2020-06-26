@@ -33,4 +33,8 @@ export default class Api {
   static rabotaUaPageUrl() {
     return `${this.#API}/${this.#RABOTA_UA}/vacancyPageUrl`;
   }
+
+  static rabotaUaCities() {
+    return `${this.#API}/${this.#RABOTA_UA}/cities`;
+  }
 }
