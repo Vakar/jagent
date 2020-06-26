@@ -43,5 +43,6 @@ router.get(
   "/foreign/rabotaUa/vacancyPageUrl",
   rabotaUaController.vacancyPageUrl
 );
+router.get("/foreign/rabotaUa/cities", rabotaUaController.cities);
 
 module.exports = router;
