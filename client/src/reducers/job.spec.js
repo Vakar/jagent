@@ -5,11 +5,14 @@ import {
   deleteSavedVacancy,
   removeSearchParams,
   selectJob,
+  setCities,
+  setCity,
   setFoundVacancies,
   setSavedVacancies,
   setSearchParams,
 } from "../actions";
 
+import City from "../models/city";
 import Job from "../models/job";
 import SearchParamsBuilder from "../models/searchParamsBuilder";
 import VacancyBuilder from "../models/vacancyBuilder";
@@ -19,6 +22,10 @@ import job from "./job";
 chai.should();
 
 const selectedJob = new Job("39d295dae546b15e93293ddd", "job name");
+
+const city = new City("London", 1);
+
+const cities = [city];
 
 const vacancy = new VacancyBuilder()
   .with_id("5e93293ddd39d295dae546b1")
@@ -45,12 +52,16 @@ describe("job reducer", () => {
       foundVacancies: [],
       savedVacancies: [],
       searchParams: undefined,
+      cities: [],
+      selectedCity: undefined,
     };
     fullState = {
       selectedJob: undefined,
       foundVacancies: [vacancy],
       savedVacancies: [vacancy],
       searchParams: searchParams,
+      cities: cities,
+      selectedCity: city,
     };
   });
 
@@ -120,5 +131,19 @@ describe("job reducer", () => {
     const expected = Object.assign({}, fullState);
     expected.searchParams = undefined;
     job(fullState, action).should.to.deep.equal(expected);
+  });
+
+  it("SET_CITIES | should set cities", () => {
+    const action = setCities(cities);
+    const expected = Object.assign({}, emptyState);
+    expected.cities = cities;
+    job(emptyState, action).should.to.deep.equal(expected);
+  });
+
+  it("SET_SELECTED_CITY | should set selected city", () => {
+    const action = setCity(city);
+    const expected = Object.assign({}, emptyState);
+    expected.selectedCity = city;
+    job(emptyState, action).should.to.deep.equal(expected);
   });
 });

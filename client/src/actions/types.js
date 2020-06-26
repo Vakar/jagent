@@ -20,6 +20,9 @@ export const DELETE_JOB = "DELETE_JOB";
 export const EDIT_JOB = "EDIT_JOB";
 export const GET_JOBS = "GET_JOBS";
 
+export const SET_CITIES = "SET_CITIES";
+export const SET_SELECTED_CITY = "SET_SELECTED_CITY";
+
 /* -> SYSTEM */
 export const SET_SYSTEM_ALERT = "SET_SYSTEM_ALERT";
 export const REMOVE_SYSTEM_ALERT = "REMOVE_SYSTEM_ALERT";

@@ -7,11 +7,14 @@ import {
   DELETE_SAVED_VACANCY,
   REMOVE_SEARCH_PARAMS,
   SELECT_JOB,
+  SET_CITIES,
   SET_FOUND_VACANCIES,
   SET_SAVED_VACANCIES,
   SET_SEARCH_PARAMS,
+  SET_SELECTED_CITY,
 } from "./types";
 
+import City from "../models/city";
 import Job from "../models/job";
 import SearchParamsBuilder from "../models/searchParamsBuilder";
 import VacancyBuilder from "../models/vacancyBuilder";
@@ -31,6 +34,10 @@ const vacancy = new VacancyBuilder()
   .build();
 
 const vacancies = [vacancy];
+
+const city = new City("London", 1);
+
+const cities = [city];
 
 const searchParams = new SearchParamsBuilder()
   .withCountry("Great Britain")
@@ -97,6 +104,20 @@ describe("vacancy actions", () => {
   it("removeSearchParams should create REMOVE_SEARCH_PARAMS action", () => {
     actions.removeSearchParams().should.to.deep.equal({
       type: REMOVE_SEARCH_PARAMS,
+    });
+  });
+
+  it("setCities should create SET_CITIES action", () => {
+    actions.setCities(cities).should.to.deep.equal({
+      type: SET_CITIES,
+      cities,
+    });
+  });
+
+  it("setCity should create SET_CITY action", () => {
+    actions.setCity(city).should.to.deep.equal({
+      type: SET_SELECTED_CITY,
+      city,
     });
   });
 });

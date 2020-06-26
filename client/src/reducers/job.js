@@ -5,9 +5,11 @@ import {
   DELETE_SAVED_VACANCY,
   REMOVE_SEARCH_PARAMS,
   SELECT_JOB,
+  SET_CITIES,
   SET_FOUND_VACANCIES,
   SET_SAVED_VACANCIES,
   SET_SEARCH_PARAMS,
+  SET_SELECTED_CITY,
 } from "../actions/types";
 
 import produce from "immer";
@@ -17,6 +19,8 @@ const initialState = {
   foundVacancies: [],
   savedVacancies: [],
   searchParams: undefined,
+  cities: [],
+  selectedCity: undefined,
 };
 
 export default function job(baseState = initialState, action) {
@@ -58,6 +62,14 @@ export default function job(baseState = initialState, action) {
     case REMOVE_SEARCH_PARAMS:
       return produce(baseState, (draftState) => {
         draftState.searchParams = undefined;
+      });
+    case SET_CITIES:
+      return produce(baseState, (draftState) => {
+        draftState.cities = action.cities;
+      });
+    case SET_SELECTED_CITY:
+      return produce(baseState, (draftState) => {
+        draftState.selectedCity = action.city;
       });
     default:
       return baseState;

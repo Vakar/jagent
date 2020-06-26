@@ -5,9 +5,11 @@ import {
   DELETE_SAVED_VACANCY,
   REMOVE_SEARCH_PARAMS,
   SELECT_JOB,
+  SET_CITIES,
   SET_FOUND_VACANCIES,
   SET_SAVED_VACANCIES,
   SET_SEARCH_PARAMS,
+  SET_SELECTED_CITY,
 } from "./types";
 
 export const selectJob = (job) => ({
@@ -50,4 +52,14 @@ export const setSearchParams = (searchParams) => ({
 
 export const removeSearchParams = () => ({
   type: REMOVE_SEARCH_PARAMS,
+});
+
+export const setCities = (cities) => ({
+  type: SET_CITIES,
+  cities,
+});
+
+export const setCity = (city) => ({
+  type: SET_SELECTED_CITY,
+  city,
 });
