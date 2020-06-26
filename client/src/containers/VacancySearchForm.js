@@ -1,9 +1,21 @@
 import VacancySearchForm from "../components/VacancySearchForm";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { fetchCities } from "../api/rabotaUa";
 import { fetchVacancies } from "../api/rabotaUa";
 
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ searchVacancies: fetchVacancies }, dispatch);
+const mapStateToProps = (state) => {
+  return {
+    selectedCity: state.job.selectedCity,
+  };
+};
 
-export default connect(null, mapDispatchToProps)(VacancySearchForm);
+const mapDispatchToProps = (dispatch) => {
+  const props = {
+    fetchCities: fetchCities,
+    searchVacancies: fetchVacancies,
+  };
+  return bindActionCreators(props, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(VacancySearchForm);

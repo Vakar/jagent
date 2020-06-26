@@ -9,6 +9,7 @@ import {
   isStringShorterOrEqual,
 } from "../utils/validation/stringValidators";
 
+import AutocompleteSelect from "../containers/AutocompleteSelect";
 import Button from "@material-ui/core/Button";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
@@ -29,8 +30,12 @@ export default class VacancySearchForm extends Component {
       },
       keyWordsHelperText: "",
       selectedSite: "rabotaUa",
-      selectedCity: "Kharkiv",
     };
+  }
+
+  componentDidMount() {
+    const { fetchCities } = this.props;
+    fetchCities();
   }
 
   validateKeyWords(keyWords) {
@@ -64,17 +69,20 @@ export default class VacancySearchForm extends Component {
     const isKeyWordsValid = !this.state.keyWordsInputValidationState.error;
     if (isKeyWordsValid) {
       const { searchVacancies } = this.props;
+      const { selectedCity } = this.props;
       const searchParams = {
         ukrainian: true,
         keyWords: this.state.keyWords,
-        cityId: 21,
       };
+      if (selectedCity) {
+        searchParams.cityId = selectedCity.id;
+      }
       searchVacancies(searchParams);
     }
   }
 
   render() {
-    const { selectedSite, selectedCity } = this.state;
+    const { selectedSite } = this.state;
     return (
       <Grid container item xs={12} spacing={1}>
         {/* FORM HEADER */}
@@ -103,20 +111,13 @@ export default class VacancySearchForm extends Component {
               }
               label="rabota.ua"
             />
-            <FormControlLabel
-              value="start"
-              control={
-                <Radio
-                  disabled
-                  checked={selectedCity === "Kharkiv"}
-                  value="Kharkiv"
-                  name="city"
-                />
-              }
-              label="Kharkiv"
-            />
           </RadioGroup>
         </Grid>
+        {/* AUTOCOMPLETE CITY SELECT */}
+        <Grid item xs={4}>
+          <AutocompleteSelect />
+        </Grid>
+        <Grid item xs={8}></Grid>
         {/* KEYWORDS AND SUBMIT BUTTON */}
         <Grid
           container
