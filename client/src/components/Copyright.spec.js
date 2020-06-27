@@ -19,7 +19,7 @@ describe("components Copyright", () => {
   describe("link", () => {
     it("should render", () => {
       const output = setup();
-      const [, link] = output.props.children;
+      const link = output.props.children[3];
       expect(link.type).toBe(Link);
       expect(link.props.href).toBe("https://vakar.space");
     });
