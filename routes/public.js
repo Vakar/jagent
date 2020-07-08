@@ -3,6 +3,8 @@ const router = express.Router();
 
 const registrationController = require("../controllers/registrationController");
 
+const RECAPTCHA_SITE_KEY = process.env.JAGENT_RECAPTCHA_SITE_KEY;
+
 /* GET home page. */
 router.get("/", (req, res) => {
   if (req.user) {
@@ -16,6 +18,7 @@ router.get("/", (req, res) => {
 router.get("/registration", (req, res) =>
   res.render("registration", {
     title: "Registration page",
+    recaptchaSiteKey: RECAPTCHA_SITE_KEY,
   })
 );
 

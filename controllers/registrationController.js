@@ -1,15 +1,19 @@
 const User = require("../models/user");
-
+const { body, validationResult } = require("express-validator");
+const fetch = require("node-fetch");
+const { URLSearchParams } = require("url");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-
-const { body, validationResult } = require("express-validator");
 
 const REGISTRATION_VIEW = "registration";
 const HOME_VIEW = "/";
 
 const MIN_LENGTH = 3;
 const MAX_LENGTH = 20;
+
+const RECAPTCHA_API = "https://www.google.com/recaptcha/api/siteverify";
+const SECRET_KEY = process.env.JAGENT_RECAPTCHA_SECRET_KEY;
+const SITE_KEY = process.env.JAGENT_RECAPTCHA_SITE_KEY;
 
 exports.validateRegistration = () => {
   return [
@@ -38,12 +42,29 @@ exports.validateRegistration = () => {
       )
       .custom((value, { req }) => {
         if (value !== req.body.confirmPassword) {
-          // trow error if passwords do not match
           throw new Error("Passwords don't match.");
         } else {
           return value;
         }
       }),
+    body("g-recaptcha-response").custom(async (gRecaptchaResponse, { req }) => {
+      if (gRecaptchaResponse) {
+        const recaptchaParams = new URLSearchParams();
+        recaptchaParams.append("secret", SECRET_KEY);
+        recaptchaParams.append("response", gRecaptchaResponse);
+        recaptchaParams.append("remoteip", req.ip);
+        const recaptchaApiResponse = await fetch(RECAPTCHA_API, {
+          method: "POST",
+          body: recaptchaParams,
+        });
+        const verificationResult = await recaptchaApiResponse.json();
+        if (!verificationResult.success) {
+          throw new Error("Failed captcha verification.");
+        }
+      } else {
+        throw new Error("You didn't check 'I'm not a robot'.");
+      }
+    }),
   ];
 };
 
@@ -55,6 +76,8 @@ exports.saveUser = async (req, res, next) => {
       res.render(REGISTRATION_VIEW, {
         username: username,
         errors: errors.array(),
+        title: "Registration page",
+        recaptchaSiteKey: SITE_KEY,
       });
     } else {
       const hash = await bcrypt.hash(password, saltRounds);

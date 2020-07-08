@@ -27,6 +27,17 @@ Project uses [npm](https://www.npmjs.com) as JS package manager and [Node.js](ht
 
 ```
 
+### Setting up google recaptcha keys
+
+- You need to set system variables with google recaptcha keys
+
+```bash
+
+  JAGENT_RECAPTCHA_SECRET_KEY="YOUR_SECRET_KEY"
+  JAGENT_RECAPTCHA_SITE_KEY="YOUR_SITE_KEY"
+
+```
+
 ### Install server side app part
 
 1. Open project folder in terminal

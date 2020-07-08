@@ -1,9 +1,27 @@
 extends layout
 
+block append head  
+  script(src='https://www.google.com/recaptcha/api.js')
+  
+block append script
+  //- Submit registration form script
+  script.
+    $(document).ready(function() {
+      $('#registrationForm').submit(function() {
+        $(this).ajaxSubmit({
+          error: function(xhr) {
+            console.log('Error: ' + xhr.status);
+          }
+        });
+        //Very important line, it disable the page refresh.
+        return false;
+      });
+    });
+
 block content
 
-  .container
-          form.form-signin(method='POST' action='/register')
+    .container
+          form#registrationForm.form-signin(method='POST' action='/register')
             h5.card-title.text-center Sign Up
             .form-group
               label.bmd-label-floating(for='inputUsername') Username
@@ -16,6 +34,8 @@ block content
             .form-group
               label.bmd-label-floating(for='confirmPassword') Confirm Password
               input#confirmPassword.form-control(type='password' name="confirmPassword" required='true')
+            br
+            .g-recaptcha(data-sitekey=recaptchaSiteKey)
             br
             button.btn.btn-outline-dark.btn-block.text-uppercase(type='submit') Sign Up
             br
