@@ -92,7 +92,6 @@ app.use(passport.session());
 // GET show login page
 app.get("/login", function (req, res) {
   res.render("login", {
-    title: "Jagent Login",
     message: req.flash("error"),
   });
 });

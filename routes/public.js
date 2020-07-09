@@ -17,7 +17,6 @@ router.get("/", (req, res) => {
 /* GET registration page */
 router.get("/registration", (req, res) =>
   res.render("registration", {
-    title: "Registration page",
     recaptchaSiteKey: RECAPTCHA_SITE_KEY,
   })
 );

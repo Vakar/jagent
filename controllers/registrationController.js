@@ -76,7 +76,6 @@ exports.saveUser = async (req, res, next) => {
       res.render(REGISTRATION_VIEW, {
         username: username,
         errors: errors.array(),
-        title: "Registration page",
         recaptchaSiteKey: SITE_KEY,
       });
     } else {
