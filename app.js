@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const createError = require("http-errors");
 const flash = require("connect-flash");
 const logger = require("morgan");
+const { MONGODB_URL } = require("./constants/processEnv");
 const mongoose = require("mongoose");
 const nocache = require("nocache");
 const helmet = require("helmet");
@@ -41,7 +42,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static("public"));
 
 /* MONGOOSE */
-const MONGODB_URL = process.env.MONGO_URI;
 mongoose.connect(MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,

@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const { body, validationResult } = require("express-validator");
 const fetch = require("node-fetch");
+const { SECRET_KEY, SITE_KEY } = require("../constants/processEnv");
 const { URLSearchParams } = require("url");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -12,8 +13,6 @@ const MIN_LENGTH = 3;
 const MAX_LENGTH = 20;
 
 const RECAPTCHA_API = "https://www.google.com/recaptcha/api/siteverify";
-const SECRET_KEY = process.env.JAGENT_RECAPTCHA_SECRET_KEY;
-const SITE_KEY = process.env.JAGENT_RECAPTCHA_SITE_KEY;
 
 exports.validateRegistration = () => {
   return [
