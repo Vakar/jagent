@@ -17,6 +17,7 @@ const session = require("express-session");
 const bcrypt = require("bcrypt");
 
 const publicRouter = require("./routes/public");
+const reactRoutsMock = require("./routes/reactRoutsMock");
 const restApi = require("./routes/restApi");
 
 const Users = require("./models/user");
@@ -126,6 +127,7 @@ app.use(express.static(path.join(__dirname, "client/build")));
 app.use(express.static("build"));
 
 /* SECURE ROUTES */
+app.use("/", reactRoutsMock);
 app.use("/api/rest", restApi);
 
 /* ERROR HANDLING */
