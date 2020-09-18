@@ -43,7 +43,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static("public"));
 
 /* MONGOOSE */
-mongoose.connect(MONGODB_URL, {
+mongoose.connect(encodeURI(MONGODB_URL), {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
