@@ -1,10 +1,5 @@
-import {
-  GLOBAL,
-  NOT_LETTERS_OR_SPACE,
-} from "../utils/validation/regexpPatterns";
 import React, { Component } from "react";
 import {
-  isStringContains,
   isStringLonger,
   isStringShorterOrEqual,
 } from "../utils/validation/stringValidators";
@@ -36,9 +31,7 @@ class AddJob extends Component {
     const MAX_LENGTH = 36;
     let validationState = { error: true };
     let helperText = "";
-    if (isStringContains(name, NOT_LETTERS_OR_SPACE, GLOBAL)) {
-      helperText = "Should contains only letters.";
-    } else if (isStringShorterOrEqual(name, MIN_LENGTH)) {
+    if (isStringShorterOrEqual(name, MIN_LENGTH)) {
       helperText = `Should be longer then ${MIN_LENGTH} characters.`;
     } else if (isStringLonger(name, MAX_LENGTH)) {
       helperText = `Shouldn't be longer then ${MAX_LENGTH} characters. `;
@@ -62,7 +55,7 @@ class AddJob extends Component {
     const isNameValid = !this.state.nameInputValidationState.error;
     if (isNameValid) {
       const { saveJob } = this.props;
-      saveJob(this.state.name);
+      saveJob(this.state.name.trim());
       this.props.history.push("/index.html");
     }
   }

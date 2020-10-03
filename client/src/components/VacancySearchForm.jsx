@@ -1,10 +1,5 @@
-import {
-  GLOBAL,
-  NOT_LETTERS_OR_SPACE,
-} from "../utils/validation/regexpPatterns";
 import React, { Component } from "react";
 import {
-  isStringContains,
   isStringLonger,
   isStringShorterOrEqual,
 } from "../utils/validation/stringValidators";
@@ -43,9 +38,7 @@ export default class VacancySearchForm extends Component {
     const MAX_LENGTH = 128;
     let validationState = { error: true };
     let helperText = "";
-    if (isStringContains(keyWords, NOT_LETTERS_OR_SPACE, GLOBAL)) {
-      helperText = "Should contains only letters.";
-    } else if (isStringShorterOrEqual(keyWords, MIN_LENGTH)) {
+    if (isStringShorterOrEqual(keyWords, MIN_LENGTH)) {
       helperText = `Should be longer then ${MIN_LENGTH} characters.`;
     } else if (isStringLonger(keyWords, MAX_LENGTH)) {
       helperText = `Shouldn't be longer then ${MAX_LENGTH} characters. `;
@@ -56,7 +49,7 @@ export default class VacancySearchForm extends Component {
   }
 
   handleKeyWords(event) {
-    const keyWords = event.target.value;
+    const keyWords = event.target.value.trimStart();
     const [validationState, helperText] = this.validateKeyWords(keyWords);
     this.setState({
       keyWordsInputValidationState: validationState,
@@ -70,14 +63,16 @@ export default class VacancySearchForm extends Component {
     if (isKeyWordsValid) {
       const { searchVacancies } = this.props;
       const { selectedCity } = this.props;
+      const keyWords = this.state.keyWords.trim();
       const searchParams = {
         ukrainian: true,
-        keyWords: this.state.keyWords,
+        keyWords,
       };
       if (selectedCity) {
         searchParams.cityId = selectedCity.id;
       }
       searchVacancies(searchParams);
+      this.setState({ ...this.state, keyWords });
     }
   }
 
