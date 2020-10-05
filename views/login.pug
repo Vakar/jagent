@@ -21,6 +21,14 @@ block content
             a.float-right.badge.badge-dark(href='/registration') Registration
             hr.my-4
             p.text-danger.text-center #{message}
+            header.page-header.text-center
+              h5 Demo credentials:
+              p
+                b Username:
+                |  demo
+                br
+                b Password:
+                |  1234
             if errors       
                 ul.list-group
                     each val, index in errors
